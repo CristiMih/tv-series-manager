@@ -1,0 +1,26 @@
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 55px;
+  border-bottom: 1px solid black ;
+
+  & input {
+    min-width: 20rem;
+    max-width: 30rem;
+    flex-grow: 2;
+  }
+}
+
+.menu{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  gap: 10px;
+
+  & a {
+    text-decoration: none;
+  }
+
+}
