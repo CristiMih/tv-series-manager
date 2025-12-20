@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
 
 export default function Search() {
   const [results, setResults] = useState([]);
@@ -31,9 +31,13 @@ export default function Search() {
       <h2>Rezultatele pentru: {query}</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
         {results.map((item, index) => (
-        <div key={index}>
-          <img src={item.show?.image?.medium}/>
-        </div>
+          <div key={index}>
+            <Link to={`/show/${item.show.id}`}>
+              <img src={item.show.image?.medium}/>
+            </Link>
+            
+            <h4>{item.show.name}</h4>
+          </div>
         ))}
       </div>    
     </div>

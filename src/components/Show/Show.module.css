@@ -1,0 +1,67 @@
+.show-info {
+  position: relative;
+  height: 450px;
+  display: flex;
+  padding: 50px 95px 0px 75px;
+  gap: 50px;
+  color: white;
+}
+
+.show-info::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0, right:0, bottom:0, left:0 */
+  background: rgba(0, 0, 0, 0.65); /* overlay negru semi-transparent */
+  z-index: 1;
+}
+
+/* Overlay cu vignette */
+.show-info::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* să nu blocheze click-urile */
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 40%,      /* centru transparent */
+    rgba(0, 0, 0, 0.6) 100%    /* margini întunecate */
+  );
+  z-index: 1;
+}
+
+
+/* Ca textul să fie deasupra overlay-ului */
+.show-info > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+.showImg {
+  height: 290px;
+  border-radius: 7px;
+}
+
+.show-data {
+  max-width: 650px;
+}
+
+.watchlistBtn {
+  height: 45px;
+  width: 280px;
+  background: none;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 2rem;
+  color: inherit;
+  margin-top: 115px;
+  margin-left: auto;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.watchlistBtn:hover {
+  background-color: white;
+  color: black;
+}
+
