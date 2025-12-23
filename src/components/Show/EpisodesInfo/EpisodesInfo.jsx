@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router"
+import style from "./EpisodesInfo.module.css"
+import EpisodesCarousel from "./EpisodesCarousel";
 
 export default function EpisodesInfo() {
   const [season, setSeason] = useState([]);
+  const [selectedSeasonId, setSelectedSeasonId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
@@ -14,8 +17,8 @@ export default function EpisodesInfo() {
         const seasonData = await seasonRes.json();
 
         setSeason(seasonData)
+        setSelectedSeasonId(seasonData[0]?.id);
         setLoading(false);
-        console.log(seasonData);
       } catch (err) {
       console.error("Eroare la fetch:", err);
       setLoading(false);
@@ -29,14 +32,20 @@ export default function EpisodesInfo() {
 
   return(
     <>
-      <h2>Episodes</h2>
-          <select>
-            {season.map(s => (
-             <option key={s.id} value={s.number}>
+      <div className={style["episodes-div"]}>
+        <h2>Episodes</h2>
+          <select 
+            value={selectedSeasonId}
+            onChange={(e) => setSelectedSeasonId(e.target.value)}
+          >
+            {season.map(s => s.premiereDate && (
+              <option key={s.id} value={s.id}>
               Season {s.number}
-             </option>
+              </option>
             ))}
           </select>
+      </div>
+      <EpisodesCarousel seasonId={selectedSeasonId} />
     </>
   )
 }

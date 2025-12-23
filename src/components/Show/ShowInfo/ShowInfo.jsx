@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router"
-import styles from "./Show.module.css"
+import styles from "../Show.module.css"
 import Rating from "./Rating"
-import noImg from "../../assets/no-image.jpg"
+import noImg from "../../../assets/no-image.jpg"
+
 export default function ShowInfo() {
   const [show, setShow] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ useEffect(() => {
       setShow({
         ...showData,
         bigImages: imagesData.filter(img => img.resolutions?.original?.width >= 1500 ),
-        seasonsCount: seasonsData.length
+        seasonsCount: seasonsData.filter(s => s.premiereDate).length
       });
 
       setLoading(false);

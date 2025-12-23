@@ -1,0 +1,16 @@
+.episodes-div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 75px;
+}
+
+.carousel-div {
+  background-color: red;
+  height: 150px;
+  margin-left: 75px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+}

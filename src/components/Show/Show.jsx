@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ShowInfo from "./ShowInfo"
-import EpisodesInfo from "./EpisodesInfo"
+import ShowInfo from "./ShowInfo/ShowInfo"
+import EpisodesInfo from "./EpisodesInfo/EpisodesInfo"
 
 
 export default function Show() {
