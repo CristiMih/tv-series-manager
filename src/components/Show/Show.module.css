@@ -5,6 +5,10 @@
   padding: 50px 95px 0px 75px;
   gap: 50px;
   color: white;
+  background-image: var(--bg-image); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
 }
 
 .show-info::after {
@@ -46,6 +50,42 @@
   max-width: 650px;
 }
 
+.show-data h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.show-data p {
+  margin: 0;
+}
+
+.show-data p {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.show-data p:nth-of-type(3) {
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.show-data .show-summary p{
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 24px;
+}
+
+.watchlistBtnDiv{
+  margin-top: 115px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .watchlistBtn {
   height: 45px;
   width: 280px;
@@ -54,8 +94,6 @@
   border-radius: 4px;
   font-size: 2rem;
   color: inherit;
-  margin-top: 115px;
-  margin-left: auto;
   font-weight: 500;
   cursor: pointer;
 }
@@ -63,5 +101,11 @@
 .watchlistBtn:hover {
   background-color: white;
   color: black;
+}
+
+.seenBtn {
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
