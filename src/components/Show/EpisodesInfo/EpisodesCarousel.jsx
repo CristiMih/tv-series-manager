@@ -1,9 +1,9 @@
 import style from "./EpisodesInfo.module.css"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function EpisodesCarousel({seasonId}) {
   const [episodes, setEpisodes] = useState([]);
-
+  const carouselRef = useRef(null);
   useEffect(() => {
     async function loadData() {
       try {
@@ -20,11 +20,28 @@ export default function EpisodesCarousel({seasonId}) {
     loadData();
   },[seasonId])
 
-  return(
-    <div className={style["carousel-div"]}>
+  const scrollLeft = () => {
+    carouselRef.current.scrollBy({left: -300, behavior:"smooth"});
+  };
+
+  const scrollRight = () => { carouselRef.current.scrollBy({ left: 300, behavior: "smooth" }); 
+  };
+  return (
+  <div className={style.wrapper}>
+    <button className={style.arrow} onClick={scrollLeft}>
+      ◀
+    </button>
+
+    <div className={style["carousel-div"]} ref={carouselRef}>
       {episodes.map(s => (
-              <img  src={s.image?.medium} key={s.id}/>
-            ))}
+        <img src={s.image?.medium} key={s.id} />
+      ))}
     </div>
-  )
+
+    <button className={style.arrow} onClick={scrollRight}>
+      ▶
+    </button>
+  </div>
+  );
+
 }
