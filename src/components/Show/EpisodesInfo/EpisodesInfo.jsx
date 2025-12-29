@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router"
-import style from "./EpisodesInfo.module.css"
+import { useParams } from "react-router";
+import style from "./EpisodesInfo.module.css";
 import EpisodesCarousel from "./EpisodesCarousel";
 
 export default function EpisodesInfo() {
@@ -16,13 +16,22 @@ export default function EpisodesInfo() {
         const seasonRes = await fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
         const seasonData = await seasonRes.json();
 
-        setSeason(seasonData)
-        setSelectedSeasonId(seasonData[0]?.id);
-        setLoading(false);
+        const today = new Date();
+
+        const filteredSeasons = seasonData.filter(s => { 
+          if (!s.premiereDate) return false;
+          return new Date(s.premiereDate) <= today; 
+        });
+
+        setSeason(filteredSeasons)
+        setSelectedSeasonId(filteredSeasons[0]?.id);
+
       } catch (err) {
-      console.error("Eroare la fetch:", err);
-      setLoading(false);
-      } 
+       console.error("Eroare la fetch:", err);
+
+      } finally { 
+        setLoading(false);
+      }
     } 
     loadData();
   
@@ -45,7 +54,10 @@ export default function EpisodesInfo() {
             ))}
           </select>
       </div>
-      <EpisodesCarousel seasonId={selectedSeasonId} />
+      <EpisodesCarousel 
+        seasonId={selectedSeasonId}
+        setLoading={setLoading}
+      />
     </>
   )
 }

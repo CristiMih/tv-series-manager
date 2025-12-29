@@ -17,3 +17,32 @@ body {
   font-size: 1.6rem;
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
+
+.brand-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 150px 1fr;
+  width: 70vw;
+  margin: 0 auto;
+
+  & > label {
+    justify-self: end;
+    align-self: center;
+  }
+}
+  & > input:not([type=checkbox], [type=color], [type=radio], [type=range]) {
+    padding: .5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.second-column {
+  grid-column-start: 2;
+}
+
+.auto-width {
+  justify-self: start;
+}

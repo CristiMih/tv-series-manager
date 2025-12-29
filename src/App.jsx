@@ -4,23 +4,31 @@ import Nav from "./components/Nav/Nav"
 import ContentSection from "./components/ContentSection/Content";
 import Discover from "./components/Discover/Discover"
 import Show from "./components/Show/Show"
+import Register from "./features/Auth/Register";
+import Login from "./features/Auth/Login";
+import { ToastContainer } from "react-toastify";
 import "./App.css"
 
 export default function App() {
-
+  
   return (
-
+    
     <BrowserRouter>
       <Nav />
       <Routes>
         <Route path="/" element={<ContentSection />} />
         <Route path="discover" element={<Discover />}/>
         <Route path="/show/:id" element={<Show />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/register" element={<Register />}/>
         <Route path="*" element={<h1>404 Not Found</h1>}/>
       </Routes>
+
+      <ToastContainer />
     </BrowserRouter>
       
-
-
-  );
-}
+      
+      
+    );
+  }
+  

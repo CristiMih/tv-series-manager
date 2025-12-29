@@ -1,5 +1,5 @@
 import styles from "./Nav.module.css"
-import { useNavigate, Link } from "react-router"
+import { NavLink, Link } from "react-router"
 import SearchForm from "./SearchForm"
 
 export default function Nav() {
@@ -11,12 +11,11 @@ export default function Nav() {
       <SearchForm />
       <menu className={styles.menu}>
         <li>
-          <a href="#">Home</a>
+          <NavLink to="/login">Login</NavLink>
         </li>
         <li>
-          <a href="#">About Us</a>
-          </li>
-        <li><a href="#">Log In</a></li>
+          <NavLink to="/register">Register</NavLink>
+        </li>
       </menu>
     </nav>
   )

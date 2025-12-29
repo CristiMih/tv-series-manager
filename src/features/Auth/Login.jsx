@@ -1,0 +1,108 @@
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { object, email, string, flattenError } from "zod";
+
+const apiUrl = import.meta.env.VITE_API_URL + '/login';
+
+const loginSchema = object({
+  email: email("Please type a valid email address"),
+  password: string().min(
+    6,
+    "Your password needs to be at least 6 characters long"
+  ),
+ 
+});
+
+function validateForm(formValues, schema) {
+  const res = schema.safeParse(formValues);
+  if (res.success) {
+    return null;
+  }
+
+  const err = flattenError(res.error);
+  const errors = Object.fromEntries(
+    Object.entries(err.fieldErrors).map(([key, val]) => [key, val[0]])
+  );
+  return errors;
+}
+
+export default function Login() {
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: ""  
+  });
+
+  const [errors, setErrors] = useState(null);
+
+  function handleInputChange(e) {
+   const newValues = { ...formValues, [e.target.name]: e.target.value };
+
+   if (errors) {
+    const newErrors = validateForm(newValues, loginSchema);
+    if(newErrors) {
+      setErrors(newErrors);
+    } else {
+      setErrors(null);
+    }
+   }
+   setFormValues(newValues);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const errors = validateForm(formValues, loginSchema);
+
+    if (errors) {
+      setErrors(errors);
+      console.log(errors)
+      return;
+    }
+
+    setErrors(null);
+
+    const sendToServer = {...formValues};
+    delete sendToServer.retypePassword;
+
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      body: JSON.stringify(sendToServer),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then((res) => res.json());
+    
+    if(typeof res === 'string') {
+      toast.error(res);
+    }
+    toast.success('Succesfully logged in !')
+  }
+
+  return (
+    <form className="brand-form" noValidate onSubmit={handleSubmit}>
+      <h1 className="full-width">Login</h1>
+
+      <label htmlFor="email">Email</label>
+      <input
+        name="email"
+        id="email"
+        type="email"
+        value={formValues.email}
+        onChange={handleInputChange}
+      />
+
+      <label htmlFor="password">Password</label>
+      <input
+        name="password"
+        id="password"
+        type="password"
+        value={formValues.password}
+        onChange={handleInputChange}
+      />
+
+      <button type="submit" className="second-column auto-width">
+        Login
+      </button>
+    </form>
+  );
+}

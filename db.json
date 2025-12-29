@@ -1,8 +1,18 @@
 {
-  "users" : [
+  "users": [
     {
-      "id" : 1
+      "email": "cristishowtime@gmail.com",
+      "password": "$2a$10$egb3xUynx4hcLqTE2reyIuGP74C8kT.Z8PB123sR3vIEDgdzYyBTO",
+      "firstName": "Mihalcea",
+      "lastName": "Gabriela",
+      "id": 1
+    },
+    {
+      "email": "cristishowtsime@gmail.com",
+      "password": "$2a$10$C6cjeeUbp9Ij0cvpvJ/S/OFJ.V83h8M8bbv.r3nMJF.zlj5QVzudO",
+      "firstName": "Mihalcea",
+      "lastName": "Gabriela",
+      "id": 2
     }
   ]
-
 }

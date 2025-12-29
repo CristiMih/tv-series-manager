@@ -22,10 +22,12 @@ useEffect(() => {
       const seasonsRes = await fetch(`https://api.tvmaze.com/shows/${id}/seasons`); 
       const seasonsData = await seasonsRes.json();
 
+      const today = new Date();
+
       setShow({
         ...showData,
         bigImages: imagesData.filter(img => img.resolutions?.original?.width >= 1500 ),
-        seasonsCount: seasonsData.filter(s => s.premiereDate).length
+        seasonsCount: seasonsData.filter(s => s.premiereDate && new Date(s.premiereDate) <= today).length
       });
 
       setLoading(false);
