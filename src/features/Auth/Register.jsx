@@ -82,6 +82,7 @@ export default function Register() {
     
     if(typeof res === 'string') {
       toast.error(res);
+      return;
     }
   }
 

@@ -5,8 +5,6 @@ import CastInfo from "./CastInfo/CastInfo"
 
 
 export default function Show() {
-  
-
   return (
       <>
         <ShowInfo />

@@ -12,52 +12,53 @@ export default function EpisodesInfo() {
 
   useEffect(() => {
     async function loadData() {
-      try{
-        const seasonRes = await fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
+      try {
+        const seasonRes = await fetch(
+          `https://api.tvmaze.com/shows/${id}/seasons`
+        );
         const seasonData = await seasonRes.json();
 
         const today = new Date();
 
-        const filteredSeasons = seasonData.filter(s => { 
+        const filteredSeasons = seasonData.filter((s) => {
           if (!s.premiereDate) return false;
-          return new Date(s.premiereDate) <= today; 
+          return new Date(s.premiereDate) <= today;
         });
 
-        setSeason(filteredSeasons)
+        setSeason(filteredSeasons);
         setSelectedSeasonId(filteredSeasons[0]?.id);
-
       } catch (err) {
-       console.error("Eroare la fetch:", err);
-
-      } finally { 
+        console.error("Eroare la fetch:", err);
+      } finally {
         setLoading(false);
       }
-    } 
+    }
     loadData();
-  
-  },[id])
+  }, [id]);
 
-  if (loading) return <p>Se incarca...</p>
+  if (loading) return <p>Se incarca...</p>;
 
-  return(
+  return (
     <>
       <div className={style["episodes-div"]}>
         <h2>Episodes</h2>
-          <select 
+        <div className={style['select-wrapper']}>
+          <select
             value={selectedSeasonId}
             onChange={(e) => setSelectedSeasonId(e.target.value)}
           >
-            {season.map(s => s.premiereDate && (
-              <option key={s.id} value={s.id}>
-              Season {s.number}
-              </option>
-            ))}
+            {season.map(
+              (s) =>
+                s.premiereDate && (
+                  <option key={s.id} value={s.id}>
+                    Season {s.number}
+                  </option>
+                )
+            )}
           </select>
+        </div>
       </div>
-      <EpisodesCarousel 
-        seasonId={selectedSeasonId}
-        setLoading={setLoading}
-      />
+      <EpisodesCarousel seasonId={selectedSeasonId} setLoading={setLoading} />
     </>
-  )
+  );
 }

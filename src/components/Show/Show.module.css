@@ -70,11 +70,13 @@
   font-size: 11px;
   font-weight: 400;
 }
-
+  /*-------READ MORE, BARA SCROLL --------------
+  .show-data .show-summary{}*/
 .show-data .show-summary p{
   font-size: 16px;
   font-weight: 100;
   line-height: 24px;
+  max-height: 180px;
 }
 
 .watchlistBtnDiv{

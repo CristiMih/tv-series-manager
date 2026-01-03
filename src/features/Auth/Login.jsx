@@ -74,6 +74,7 @@ export default function Login() {
     
     if(typeof res === 'string') {
       toast.error(res);
+      return;
     }
     toast.success('Succesfully logged in !')
   }

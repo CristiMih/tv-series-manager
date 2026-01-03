@@ -1,15 +1,41 @@
 .nav{
   display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #202625;
   align-items: center;
   justify-content: space-between;
-  padding: 0 55px;
-  border-bottom: 1px solid black ;
-
+  padding: 20px 100px;
+  color: #ece9d7;
   & input {
+    border: none;
+    width: 300px;
+    font-size: 18px;
+    padding: 10px 10px;
     min-width: 20rem;
     max-width: 30rem;
-    flex-grow: 2;
+    background: none;
+    border-bottom: 2px solid #ece9d7;
+    color: inherit;
   }
+
+  & input::placeholder {
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  & input:focus {
+    outline: none;
+  }
+
+  & a{
+    color: inherit;
+  }
+}
+
+.nav img {
+  height: 55px;
 }
 
 .menu{

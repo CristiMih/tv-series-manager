@@ -1,13 +1,69 @@
+
 .episodes-div {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-left: 75px;
+
+  & h2 {
+    font-size: 32px;
+    margin: 15px 0px;
+    font-weight: 600;
+  }
 }
+
+.select-wrapper {
+  position: relative;
+  width: 140px;
+  
+
+  & select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 15px;
+    border: none;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+  }
+
+  & select:focus { 
+    outline: none; 
+    box-shadow: none; 
+    border: none;
+  }
+
+  & select option {
+    font-size: 16px;
+    font-weight: 550;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+
+    width: 22px;
+    height: 22px;
+
+    background-image: url("../../../assets/dropdown-arrow.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
 
 .wrapper {
   display: flex;
-  align-items: center;
   gap: 10px;
   position: relative;
 }
@@ -16,6 +72,8 @@
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
+  overflow-y: hidden;
+  white-space: nowrap;
   gap: 10px;
   max-width: 100%; 
   scrollbar-width: none; 

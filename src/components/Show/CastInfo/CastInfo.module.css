@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 .carousel-div {
@@ -12,6 +13,7 @@
   max-width: 100%; 
   scrollbar-width: none; 
   -ms-overflow-style: none; 
+  margin: 0 43px;
 }
 
 .carousel-div::-webkit-scrollbar { 
@@ -24,13 +26,24 @@
 }
 
 .arrow {
+  position: absolute;
+  top: 0;
+  height: 150px;
   background: #222;
   color: white;
   border: none;
   padding: 10px 15px;
   font-size: 20px;
   cursor: pointer;
-  border-radius: 5px;
+  z-index: 2;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
 }
 
 .arrow:hover {
