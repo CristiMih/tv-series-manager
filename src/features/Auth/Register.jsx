@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { object, email, string, flattenError } from "zod";
+import { useAuthContext } from "./AuthContext";
 
 const apiUrl = import.meta.env.VITE_API_URL + '/register';
 
@@ -41,6 +42,7 @@ export default function Register() {
   });
 
   const [errors, setErrors] = useState(null);
+  const { user, login } = useAuthContext();
 
   function handleInputChange(e) {
    const newValues = { ...formValues, [e.target.name]: e.target.value };
@@ -84,6 +86,9 @@ export default function Register() {
       toast.error(res);
       return;
     }
+
+    toast.success('You have been successfully logged in!');
+    login(res);
   }
 
   return (

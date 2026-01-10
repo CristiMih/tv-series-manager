@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { object, email, string, flattenError } from "zod";
+import { useAuthContext } from "./AuthContext";
 
 const apiUrl = import.meta.env.VITE_API_URL + '/login';
 
@@ -33,6 +34,8 @@ export default function Login() {
   });
 
   const [errors, setErrors] = useState(null);
+
+  const { login } = useAuthContext();
 
   function handleInputChange(e) {
    const newValues = { ...formValues, [e.target.name]: e.target.value };
@@ -77,6 +80,7 @@ export default function Login() {
       return;
     }
     toast.success('Succesfully logged in !')
+    login(res);
   }
 
   return (

@@ -40,7 +40,7 @@ useEffect(() => {
   loadData();
 }, [id]);
 
-  if (loading) return <p>Se incarca...</p>
+  if (loading) return <p>Loading...</p>
   return(
     <section
         className={styles["show-info"]} 
@@ -60,7 +60,9 @@ useEffect(() => {
             {" " + show.premiered?.split("-")[0] || "Unknown"} • 
             {" " + show.status}
           </p>
-          <p>Rating: {show.rating?.average ?? "N/A"} / 10</p>
+          <p>
+            Rating: {show.rating?.average ? `${show.rating.average} / 10` : "N/A"}
+          </p>
           <Rating score={show.rating.average}/>
           <p>{(show.genres.join(",").toUpperCase())}</p>
           <p dangerouslySetInnerHTML={{ __html: show.summary }} className={styles['show-summary']}></p>

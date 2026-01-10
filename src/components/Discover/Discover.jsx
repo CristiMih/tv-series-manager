@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router";
+import noImg from "../../assets/no-image.jpg";
+import styles from "./Discover.module.css"
 
 export default function Search() {
   const [results, setResults] = useState([]);
@@ -23,17 +25,17 @@ export default function Search() {
   }, [query]);
 
   if (loading) {
-    return <p>Se incarca...</p>
+    return <p>Loading...</p>
   }
 
   return(
     <div>
-      <h2>Rezultatele pentru: {query}</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+      <h2>Results for: "{query}"</h2>
+      <div className={styles['search-div']}>
         {results.map((item, index) => (
-          <div key={index}>
+          <div key={index} className={styles['show-div']}>
             <Link to={`/show/${item.show.id}`}>
-              <img src={item.show.image?.medium}/>
+              <img src={item.show.image?.medium || noImg}/>
             </Link>
             
             <h4>{item.show.name}</h4>

@@ -8,23 +8,26 @@ import Register from "./features/Auth/Register";
 import Login from "./features/Auth/Login";
 import { ToastContainer } from "react-toastify";
 import "./App.css"
+import { AuthContextProvider } from "./features/Auth/AuthContext";
 
 export default function App() {
   
   return (
     
     <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<ContentSection />} />
-        <Route path="discover" element={<Discover />}/>
-        <Route path="/show/:id" element={<Show />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
-        <Route path="*" element={<h1>404 Not Found</h1>}/>
-      </Routes>
+      <AuthContextProvider>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<ContentSection />} />
+          <Route path="discover" element={<Discover />}/>
+          <Route path="/show/:id" element={<Show />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
+          <Route path="*" element={<h1>404 Not Found</h1>}/>
+        </Routes>
 
-      <ToastContainer />
+        <ToastContainer />
+      </AuthContextProvider>
     </BrowserRouter>
       
       

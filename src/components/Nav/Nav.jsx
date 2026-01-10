@@ -2,9 +2,10 @@ import styles from "./Nav.module.css"
 import { NavLink, Link } from "react-router"
 import logo from "../../assets/logo1.svg"
 import SearchForm from "./SearchForm"
+import { useAuthContext } from "../../features/Auth/AuthContext"
 
 export default function Nav() {
-  console.log(logo);
+  const { user, logout } = useAuthContext();
   return(
     <nav className={styles.nav}>
       <Link to="/">
@@ -12,12 +13,30 @@ export default function Nav() {
       </Link>
       <SearchForm />
       <menu className={styles.menu}>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/register">Register</NavLink>
-        </li>
+        {!user && (
+          <>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          </>
+        )}
+        {user && (
+          <li>
+            Welcome, {user.firstName}!
+            <a href="/" onClick={(e) => {
+              e.preventDefault();
+              logout();
+            }}>
+              Logout
+            </a>
+          </li>
+          
+        )
+
+        }
       </menu>
     </nav>
   )
