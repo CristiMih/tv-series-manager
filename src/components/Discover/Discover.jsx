@@ -29,7 +29,7 @@ export default function Search() {
   }
 
   return(
-    <div>
+    <div className={styles["discover-div"]}>
       <h2>Results for: "{query}"</h2>
       <div className={styles['search-div']}>
         {results.map((item, index) => (

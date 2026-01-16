@@ -13,6 +13,20 @@
       "firstName": "lalala",
       "lastName": "MIHALCEA",
       "id": 2
+    },
+    {
+      "email": "aaa@a.com",
+      "password": "$2a$10$cuEmU4jVYbphdxaxXyJQbuUin6T6YXRy/rLYLxJNSKZ8J1REClEce",
+      "firstName": "aaaaaa",
+      "lastName": "bbbbbb",
+      "id": 3
+    },
+    {
+      "email": "aaa@aaa.com",
+      "password": "$2a$10$fTAdO.K8IjCdGXhg8COK4O6vH1IOdYoYmlD0k5nbmGzG1dJOD0hjm",
+      "firstName": "parola",
+      "lastName": "parola",
+      "id": 4
     }
   ]
 }

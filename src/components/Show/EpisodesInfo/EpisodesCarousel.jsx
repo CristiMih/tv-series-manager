@@ -25,6 +25,7 @@ export default function EpisodesCarousel({ seasonId, setLoading }) {
               year: "numeric",
             }),
           }));
+          console.log(regularEpisodes)
         setEpisodes(regularEpisodes);
       } catch (err) {
         console.error("Eroare la fetch:", err);

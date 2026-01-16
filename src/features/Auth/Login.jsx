@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { object, email, string, flattenError } from "zod";
 import { useAuthContext } from "./AuthContext";
+import { useNavigate, useLocation } from "react-router";
 
-const apiUrl = import.meta.env.VITE_API_URL + '/login';
+const apiUrl = import.meta.env.VITE_API_URL + "/login";
 
 const loginSchema = object({
   email: email("Please type a valid email address"),
@@ -11,7 +12,6 @@ const loginSchema = object({
     6,
     "Your password needs to be at least 6 characters long"
   ),
- 
 });
 
 function validateForm(formValues, schema) {
@@ -30,25 +30,40 @@ function validateForm(formValues, schema) {
 export default function Login() {
   const [formValues, setFormValues] = useState({
     email: "",
-    password: ""  
+    password: "",
   });
 
   const [errors, setErrors] = useState(null);
 
-  const { login } = useAuthContext();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const redirectTo = params.get("redirectTo");
+
+  const { user, login } = useAuthContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      if (redirectTo) {
+        navigate(redirectTo);
+      } else {
+        navigate("/");
+      }
+    }
+  }, [user, navigate]);
 
   function handleInputChange(e) {
-   const newValues = { ...formValues, [e.target.name]: e.target.value };
+    const newValues = { ...formValues, [e.target.name]: e.target.value };
 
-   if (errors) {
-    const newErrors = validateForm(newValues, loginSchema);
-    if(newErrors) {
-      setErrors(newErrors);
-    } else {
-      setErrors(null);
+    if (errors) {
+      const newErrors = validateForm(newValues, loginSchema);
+      if (newErrors) {
+        setErrors(newErrors);
+      } else {
+        setErrors(null);
+      }
     }
-   }
-   setFormValues(newValues);
+    setFormValues(newValues);
   }
 
   async function handleSubmit(e) {
@@ -58,28 +73,28 @@ export default function Login() {
 
     if (errors) {
       setErrors(errors);
-      console.log(errors)
+      console.log(errors);
       return;
     }
 
     setErrors(null);
 
-    const sendToServer = {...formValues};
+    const sendToServer = { ...formValues };
     delete sendToServer.retypePassword;
 
     const res = await fetch(apiUrl, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(sendToServer),
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     }).then((res) => res.json());
-    
-    if(typeof res === 'string') {
+
+    if (typeof res === "string") {
       toast.error(res);
       return;
     }
-    toast.success('Succesfully logged in !')
+    toast.success("Succesfully logged in !");
     login(res);
   }
 

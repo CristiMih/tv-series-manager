@@ -1,0 +1,38 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  color: black;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: .7rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btnSecondary {
+  background: #ddd;
+  padding: .7rem;
+  border-radius: 5px;
+}

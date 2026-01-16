@@ -1,6 +1,28 @@
 .main {
-  
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cards-container img{
+  height: 400px;
+}
+
+.section {
+  background-color: #2A302F;
+}
+
+.section img {
+  height: 400px;
+}
+
+.findShowDiv {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.findShow {
+  height: 120px;
+  transform: translateX(-170px);
 }

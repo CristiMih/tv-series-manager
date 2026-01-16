@@ -1,7 +1,17 @@
+.discover-div {
+  padding: 20px 100px;
+}
+
+.discover-div h4 {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
 .search-div {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem; 
+  
 }
 
 .search-div img {
