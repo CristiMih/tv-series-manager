@@ -1,7 +1,7 @@
 import { useAuthContext } from "../../../features/Auth/AuthContext";
 import AuthRequiredModal from "./AuthRequiredModal";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import styles from "../Show.module.css";
 import Rating from "./Rating";
 import noImg from "../../../assets/no-image.jpg";
@@ -10,6 +10,7 @@ export default function ShowInfo() {
   const [show, setShow] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [isInDb, setIsInDb] = useState(false);
 
   const { user, accessToken } = useAuthContext();
   const { id } = useParams();
@@ -55,6 +56,23 @@ export default function ShowInfo() {
           episodesReleased: releasedEpisodes,
         });
 
+        if (!user) {
+          setIsInDb(false);
+          setLoading(false);
+          return;
+        }
+
+        const existsRes = await fetch(
+          `${API_URL}/660/userShows?userId=${user.id}&showId=${showData.id}`,
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        if (existsRes.ok) {
+          const exists = await existsRes.json();
+          if (exists.length > 0) {
+            setIsInDb(true);
+          }
+        }
+
         setLoading(false);
       } catch (err) {
         console.error("Eroare la fetch:", err);
@@ -63,7 +81,7 @@ export default function ShowInfo() {
     }
 
     loadData();
-  }, [id]);
+  }, [id, user, accessToken]);
 
   async function handleWatchlistClick() {
     if (!user) {
@@ -117,6 +135,7 @@ export default function ShowInfo() {
         return;
       }
       console.log("Added to watchlist!");
+      setIsInDb(true);
     } catch (err) {
       console.error("Error saving show:", err);
     }
@@ -147,14 +166,14 @@ export default function ShowInfo() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(showItem)
+        body: JSON.stringify(showItem),
       });
 
       const episodesRes = await fetch(
         `https://api.tvmaze.com/shows/${id}/episodes`
       );
       const episodes = await episodesRes.json();
-      console.log(episodes)
+      console.log(episodes);
       const today = new Date();
 
       const filteredEpisodes = episodes.filter(
@@ -169,21 +188,69 @@ export default function ShowInfo() {
         runtime: ep.runtime || 0,
       }));
 
-      await Promise.all(
-        seenItems.map((item) =>
-          fetch(`${API_URL}/660/watchedEpisodes`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify(item),
-          })
-        )
-      );
+      for (const item of seenItems) {
+        await fetch(`${API_URL}/660/watchedEpisodes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify(item),
+        });
+      }
+      setIsInDb(true);
     } catch (err) {
       console.error("Error marking episodes as seen:", err);
     }
+  }
+
+  async function handleRemoveClick() {
+    try {
+      const showRes = await fetch(
+        `${API_URL}/660/userShows?userId=${user.id}&showId=${show.id}`,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      );
+
+      const showItems = await showRes.json();
+
+      if (showItems.length > 0) {
+        const showItemId = showItems[0].id;
+
+        await fetch(`${API_URL}/660/userShows/${showItemId}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+      }
+
+      const episodesRes = await fetch(
+        `${API_URL}/660/watchedEpisodes?userId=${user.id}&showId=${show.id}`,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      );
+
+      const episodes = await episodesRes.json();
+
+      for (const ep of episodes) {
+        await fetch(`${API_URL}/660/watchedEpisodes/${ep.id}`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+      }
+
+      setIsInDb(false);
+    } catch (err) {
+      console.error("Error removing show:", err);
+    }
+  }
+  const navigate = useNavigate();
+
+  function handleTrackClick() {
+    navigate(`/track/${show.id}`);
   }
 
   if (loading) return <p>Loading...</p>;
@@ -222,17 +289,28 @@ export default function ShowInfo() {
             className={styles["show-summary"]}
           ></p>
         </div>
-        <div className={styles.watchlistBtnDiv}>
-          <button
-            className={styles.watchlistBtn}
-            onClick={handleWatchlistClick}
-          >
-            + Add to watchlist
-          </button>
-          <span className={styles.seenBtn} onClick={handleSeenClick}>
-            ALREADY SEEN IT?
-          </span>
-        </div>
+        {isInDb ? (
+          <div className={styles.watchlistBtnDiv}>
+            <button className={styles.watchlistBtn} onClick={handleTrackClick}>
+              Track Episodes
+            </button>
+            <span className={styles.seenBtn} onClick={handleRemoveClick}>
+              REMOVE FROM WATCHLIST
+            </span>
+          </div>
+        ) : (
+          <div className={styles.watchlistBtnDiv}>
+            <button
+              className={styles.watchlistBtn}
+              onClick={handleWatchlistClick}
+            >
+              + Add to watchlist
+            </button>
+            <span className={styles.seenBtn} onClick={handleSeenClick}>
+              ALREADY SEEN IT?
+            </span>
+          </div>
+        )}
       </section>
     </>
   );
