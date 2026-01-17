@@ -17,7 +17,6 @@ export default function CastInfo() {
         const castData = await castRes.json();
 
         setCastInfo(castData);
-        console.log(castData);
       } catch (err) {
         console.error("Eroare la fetch:", err);
       }
