@@ -14,21 +14,21 @@
 .show-info::after {
   content: "";
   position: absolute;
-  inset: 0; /* top:0, right:0, bottom:0, left:0 */
-  background: rgba(0, 0, 0, 0.65); /* overlay negru semi-transparent */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65); 
   z-index: 1;
 }
 
-/* Overlay cu vignette */
+
 .show-info::before {
   content: "";
   position: absolute;
   inset: 0;
-  pointer-events: none; /* să nu blocheze click-urile */
+  pointer-events: none;
   background: radial-gradient(
     circle,
-    rgba(0, 0, 0, 0) 40%,      /* centru transparent */
-    rgba(0, 0, 0, 0.6) 100%    /* margini întunecate */
+    rgba(0, 0, 0, 0) 40%,     
+    rgba(0, 0, 0, 0.6) 100%    
   );
   z-index: 1;
 }

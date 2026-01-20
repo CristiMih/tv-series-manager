@@ -1,0 +1,228 @@
+.trackWrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.infoSection {
+  height: 180px;
+  position: relative;
+  background-image: var(--bg-image);
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1rem;
+}
+
+.infoSection::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); 
+  z-index: 1;
+}
+
+.infoSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 40%,     
+    rgba(0, 0, 0, 0.6) 100%    
+  );
+  z-index: 1;
+}
+
+.infoSection > * {
+  position: relative;
+  z-index: 2;
+}
+
+.showInfoBtn {
+  height: 45px;
+  width: 280px;
+  background: none;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 2rem;
+  color: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.showInfoBtn:hover {
+  background-color: white;
+  color: black;
+}
+
+.infoSection h2, p {
+  margin: 0;
+}
+
+.infoSection h2 {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.infoSection p {
+  font-size: 18px;
+  margin-left: 2px;
+}
+
+.showInfoBtnDiv {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2.5rem;
+}
+
+.bottomBar {
+  width: 100%;
+  height: 8px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.titleDiv {
+  background-color: black;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border-bottom: 3px solid white;
+}
+
+.allEpisodesDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+
+  & button {
+    background-color: transparent;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    border: 2px solid white;
+  }
+}
+
+.seasonDiv {
+  background-color: black;
+  width: 100%;
+  height: 65px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+  font-size: 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  & .bottomBar {
+    background-color: rgb(111, 88, 26);
+    height: 3px;
+  }
+
+  & div:nth-of-type(1) button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  & div:nth-of-type(2) p {
+  
+  }
+
+  & div:nth-of-type(2) button {
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin-left: 10px;
+    border: none;
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+
+  }
+}
+
+.episodeItem {
+  background-color: black;
+  height: 90px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+
+
+  &  button {
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin-left: 10px;
+    border: none;
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  & .leftSide {
+    display: flex;
+  }
+
+  & img {
+    height: 90px;
+    width: 90px;
+    object-fit: cover;
+  }
+
+  & .episodeInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+  }
+
+  & .btnDiv {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.episodeInfo p:nth-of-type(1) {
+  font-size: 22px;
+}
+
+.episodeInfo p:nth-of-type(2) {
+  font-size: 18px;
+  margin-top: 7px;
+}
+
+
+
+
+

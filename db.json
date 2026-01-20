@@ -20,7 +20,62 @@
       "rating": 6.1,
       "summary": "<p>Set in the sweltering heat of Atlanta, Anna lives in haunting reclusion, fading away from her friends and career as a journalist. But when she overhears talk about a murder in Dahlonega — the sleepy north Georgia town where she grew up — Anna is snapped back to life, pouncing on the case and searching for answers. Detective Jack Harper is strangely suspicious of her involvement, chasing her into the crosshairs of his own investigation.</p>",
       "id": 1
+    },
+    {
+      "userId": 1,
+      "showId": 82,
+      "name": "Game of Thrones",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/498/1245274.jpg",
+      "premiered": "2011-04-17",
+      "ended": "2019-05-19",
+      "episodesReleased": 73,
+      "rating": 8.9,
+      "summary": "<p>Based on the bestselling book series <i>A Song of Ice and Fire</i> by George R.R. Martin, this sprawling new HBO drama is set in a world where summers span decades and winters can last a lifetime. From the scheming south and the savage eastern lands, to the frozen north and ancient Wall that protects the realm from the mysterious darkness beyond, the powerful families of the Seven Kingdoms are locked in a battle for the Iron Throne. This is a story of duplicity and treachery, nobility and honor, conquest and triumph. In the <b>Game of Thrones</b>, you either win or you die.</p>",
+      "id": 2
     }
   ],
-  "watchedEpisodes": []
+  "watchedEpisodes": [
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3427755,
+      "runtime": 46,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3516739,
+      "runtime": 43,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3516740,
+      "runtime": 40,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3516741,
+      "runtime": 47,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3516742,
+      "runtime": 44,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "showId": 78610,
+      "episodeId": 3516743,
+      "runtime": 39,
+      "id": 6
+    }
+  ]
 }

@@ -173,7 +173,6 @@ export default function ShowInfo() {
         `https://api.tvmaze.com/shows/${id}/episodes`
       );
       const episodes = await episodesRes.json();
-      console.log(episodes);
       const today = new Date();
 
       const filteredEpisodes = episodes.filter(
@@ -188,6 +187,8 @@ export default function ShowInfo() {
         runtime: ep.runtime || 0,
       }));
 
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
       for (const item of seenItems) {
         await fetch(`${API_URL}/660/watchedEpisodes`, {
           method: "POST",
@@ -197,7 +198,10 @@ export default function ShowInfo() {
           },
           body: JSON.stringify(item),
         });
+
+        await delay(5);
       }
+
       setIsInDb(true);
     } catch (err) {
       console.error("Error marking episodes as seen:", err);
