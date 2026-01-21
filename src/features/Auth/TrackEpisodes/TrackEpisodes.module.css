@@ -112,7 +112,13 @@
     color: white;
     text-align: center;
     border: 2px solid white;
+
   }
+
+  
+}
+.btnDiv .btnWatched { 
+  background-color: #22c55e; 
 }
 
 .seasonDiv {
@@ -150,10 +156,6 @@
     cursor: pointer;
   }
 
-  & div:nth-of-type(2) p {
-  
-  }
-
   & div:nth-of-type(2) button {
     background-color: white;
     height: 30px;
@@ -166,7 +168,13 @@
     cursor: pointer;
 
   }
+
 }
+
+.btnWatched {
+  background-color: #22c55e !important;
+}
+
 
 .episodeItem {
   background-color: black;
@@ -221,6 +229,9 @@
   font-size: 18px;
   margin-top: 7px;
 }
+
+
+
 
 
 

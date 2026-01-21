@@ -8,14 +8,6 @@
   height: 400px;
 }
 
-.section {
-  background-color: #2A302F;
-}
-
-.section img {
-  height: 400px;
-}
-
 .findShowDiv {
   display: flex;
   justify-content: center;
@@ -25,4 +17,33 @@
 .findShow {
   height: 120px;
   transform: translateX(-170px);
+}
+
+.section {
+  background-color: #2A302F;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.section img {
+  height: 400px;
+}
+
+.joinDiv {
+  background-color: red;
+  height: 330px;
+  max-width: 770px;
+  padding: 15px 100px;
+}
+
+.joinDiv h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.joinDiv p {
+  font-size: 32px;
+  margin: 0;
+  
 }

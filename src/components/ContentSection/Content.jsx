@@ -25,6 +25,14 @@ export default function ContentSection() {
       </main>
       <div className={styles.section}>
         <img src={highFive} alt="" />
+        <div className={styles.joinDiv}>
+          <h2>Ready to track your Binge?</h2>
+          <p>Join BingeBuddy today and never lose track of your shows again!</p>
+          <div>
+            <button>Login</button>
+            <button>Register</button>
+          </div>
+        </div>
       </div>
     </>
     
