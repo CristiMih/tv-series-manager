@@ -1,7 +1,21 @@
+@font-face {
+  font-family: "Patrick Hand";
+  src: url("/fonts/PatrickHand.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding-top: 90px;
+}
+
+.cards-container{
+  display: flex;
+  gap: 50px;
 }
 
 .cards-container img{
@@ -9,21 +23,32 @@
 }
 
 .findShowDiv {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
+  position: absolute;
+  top: -10px;
 }
 
 .findShow {
   height: 120px;
-  transform: translateX(-170px);
+  transform: translateX(-170px) rotate(5deg);
+}
+
+
+.keepTrack-container{
+  margin-left: 60px;
+  padding: 20px 0;
+}
+
+.keepTrack-container img {
+  height: 100px;
 }
 
 .section {
   background-color: #2A302F;
   display: flex;
-  text-align: center;
   align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding-top: 20px;
 }
 
 .section img {
@@ -31,19 +56,42 @@
 }
 
 .joinDiv {
-  background-color: red;
   height: 330px;
   max-width: 770px;
-  padding: 15px 100px;
+  padding: 20px 100px;
+  border: 5px solid white;
+  border-radius: 60px;
+  text-align: center;
+  font-family: "Patrick Hand", "Inter","Arial";
 }
 
 .joinDiv h2 {
-  font-size: 48px;
+  font-size: 42px;
   margin: 0;
+  margin-bottom: 24px;
+  color: #D9AF28;
 }
 
 .joinDiv p {
   font-size: 32px;
   margin: 0;
-  
+  margin-bottom: 30px;
+}
+
+.joinDiv button {
+  font-size: 37px;
+  padding:  7px 50px;
+  cursor: pointer;
+  font-family: "Patrick Hand", "Inter","Arial";
+  color: white;
+  background-color: rgb(217, 175, 40);
+  border: none;
+  border-radius: 12px; 
+  box-shadow: 0 0 25px rgba(217, 175, 50, 0.45);
+}
+
+.joinDiv div {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }

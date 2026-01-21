@@ -25,7 +25,8 @@ export default function Nav() {
         )}
         {user && (
           <li>
-            Welcome, {user.firstName}!
+            <p>Welcome, {user.firstName}!</p>
+            |
             <a href="/" onClick={(e) => {
               e.preventDefault();
               logout();

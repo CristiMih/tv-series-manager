@@ -3,6 +3,10 @@ import { toast } from "react-toastify";
 import { object, email, string, flattenError } from "zod";
 import { useAuthContext } from "./AuthContext";
 import { useNavigate, useLocation } from "react-router";
+import styles from "./Login.module.css";
+import tvImg from "../../assets/UI-elements/tv.png";
+import popcronImg from "../../assets/UI-elements/popcorn.png";
+import tvSalute from "../../assets/UI-elements/tv-salute.png";
 
 const apiUrl = import.meta.env.VITE_API_URL + "/login";
 
@@ -10,7 +14,7 @@ const loginSchema = object({
   email: email("Please type a valid email address"),
   password: string().min(
     6,
-    "Your password needs to be at least 6 characters long"
+    "Your password needs to be at least 6 characters long",
   ),
 });
 
@@ -22,7 +26,7 @@ function validateForm(formValues, schema) {
 
   const err = flattenError(res.error);
   const errors = Object.fromEntries(
-    Object.entries(err.fieldErrors).map(([key, val]) => [key, val[0]])
+    Object.entries(err.fieldErrors).map(([key, val]) => [key, val[0]]),
   );
   return errors;
 }
@@ -99,30 +103,39 @@ export default function Login() {
   }
 
   return (
-    <form className="brand-form" noValidate onSubmit={handleSubmit}>
-      <h1 className="full-width">Login</h1>
+    <div className={styles["page-container"]}>
+      <form className={styles["brand-form"]} noValidate onSubmit={handleSubmit}>
+        <h1 className={styles["full-width"]}>Welcome back, Binger.</h1>
+        <h2 className={styles["full-width"]}>Sign in to track your shows</h2>
 
-      <label htmlFor="email">Email</label>
-      <input
-        name="email"
-        id="email"
-        type="email"
-        value={formValues.email}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          id="email"
+          type="email"
+          value={formValues.email}
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        name="password"
-        id="password"
-        type="password"
-        value={formValues.password}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          value={formValues.password}
+          onChange={handleInputChange}
+        />
 
-      <button type="submit" className="second-column auto-width">
-        Login
-      </button>
-    </form>
+        <button
+          type="submit"
+          className={`${styles["second-column"]} ${styles["full-width-button"]}`}
+        >
+          Login
+        </button>
+        <img src={tvImg} alt="" />
+        <img src={popcronImg} alt="" />
+        <img src={tvSalute} alt="" />
+      </form>
+    </div>
   );
 }

@@ -3,6 +3,13 @@ import { toast } from "react-toastify";
 import { object, email, string, flattenError } from "zod";
 import { useAuthContext } from "./AuthContext";
 import { useNavigate } from "react-router";
+import styles from "./Register.module.css";
+import remoteImg from "../../assets/UI-elements/remote.png";
+import calendarImg from "../../assets/UI-elements/calendar.png";
+import fullstarImg from "../../assets/UI-elements/fullstar.png";
+import starImg from "../../assets/UI-elements/star.png";
+import loadingImg from "../../assets/UI-elements/loadingbar.png";
+import bPopcornImg from "../../assets/UI-elements/b-popcorn.png";
 
 const apiUrl = import.meta.env.VITE_API_URL + "/register";
 
@@ -10,7 +17,7 @@ const registerSchema = object({
   email: email("Please type a valid email address"),
   password: string().min(
     6,
-    "Your password needs to be at least 6 characters long"
+    "Your password needs to be at least 6 characters long",
   ),
   retypePassword: string(),
   firstName: string().min(1, "Please tell us your first name"),
@@ -28,7 +35,7 @@ function validateForm(formValues, schema) {
 
   const err = flattenError(res.error);
   const errors = Object.fromEntries(
-    Object.entries(err.fieldErrors).map(([key, val]) => [key, val[0]])
+    Object.entries(err.fieldErrors).map(([key, val]) => [key, val[0]]),
   );
   return errors;
 }
@@ -100,57 +107,72 @@ export default function Register() {
   }
 
   return (
-    <form className="brand-form" noValidate onSubmit={handleSubmit}>
-      <h1 className="full-width">Register</h1>
+    <div className={styles["page-container"]}>
+      <form className={styles["brand-form"]} noValidate onSubmit={handleSubmit}>
+        <h1 className={styles["full-width"]}>Join the binge</h1>
+        <h2 className={styles["full-width"]}>
+          Create your account to track every episode
+        </h2>
 
-      <label htmlFor="email">Email</label>
-      <input
-        name="email"
-        id="email"
-        type="email"
-        value={formValues.email}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          id="email"
+          type="email"
+          value={formValues.email}
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        name="password"
-        id="password"
-        type="password"
-        value={formValues.password}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          value={formValues.password}
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="retypePassword">Retype Password</label>
-      <input
-        name="retypePassword"
-        id="retypePassword"
-        type="password"
-        value={formValues.retypePassword}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="retypePassword">Retype Password</label>
+        <input
+          name="retypePassword"
+          id="retypePassword"
+          type="password"
+          value={formValues.retypePassword}
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="firstName">First Name</label>
-      <input
-        name="firstName"
-        id="firstName"
-        type="text"
-        value={formValues.firstName}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="firstName">First Name</label>
+        <input
+          name="firstName"
+          id="firstName"
+          type="text"
+          value={formValues.firstName}
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        name="lastName"
-        id="lastName"
-        type="text"
-        value={formValues.lastName}
-        onChange={handleInputChange}
-      />
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          name="lastName"
+          id="lastName"
+          type="text"
+          value={formValues.lastName}
+          onChange={handleInputChange}
+        />
 
-      <button type="submit" className="second-column auto-width">
-        Register
-      </button>
-    </form>
+        <button
+          type="submit"
+          className={`${styles["second-column"]} ${styles["full-width-button"]}`}
+        >
+          Register
+        </button>
+        <img src={calendarImg} alt="" />
+        <img src={loadingImg} alt="" />
+        <img src={starImg} alt="" />
+        <img src={remoteImg} alt="" />
+        <img src={fullstarImg} alt="" />
+        <img src={bPopcornImg} alt="" />
+        
+      </form>
+    </div>
   );
 }
