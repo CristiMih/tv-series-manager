@@ -7,6 +7,7 @@ import Show from "./components/Show/Show"
 import Register from "./features/Auth/Register";
 import Login from "./features/Auth/Login";
 import TrackEpisodes from "./features/Auth/TrackEpisodes/TrackEpisodes";
+import ProfilePage from "./features/Auth/ProfilePage"
 import { ToastContainer } from "react-toastify";
 import "./App.css"
 import { AuthContextProvider } from "./features/Auth/AuthContext";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/register" element={<Register />}/>
           <Route path="*" element={<h1>404 Not Found</h1>}/>
           <Route path="/track/:id" element={<TrackEpisodes/>} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
         </Routes>
 
         <ToastContainer />

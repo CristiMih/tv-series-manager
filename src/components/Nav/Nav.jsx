@@ -1,12 +1,13 @@
-import styles from "./Nav.module.css"
-import { NavLink, Link } from "react-router"
-import logo from "../../assets/logo1.svg"
-import SearchForm from "./SearchForm"
-import { useAuthContext } from "../../features/Auth/AuthContext"
+import styles from "./Nav.module.css";
+import { NavLink, Link } from "react-router";
+import logo from "../../assets/logo1.svg";
+import SearchForm from "./SearchForm";
+import { useAuthContext } from "../../features/Auth/AuthContext";
+
 
 export default function Nav() {
   const { user, logout } = useAuthContext();
-  return(
+  return (
     <nav className={styles.nav}>
       <Link to="/">
         <img src={logo} alt="" />
@@ -24,21 +25,28 @@ export default function Nav() {
           </>
         )}
         {user && (
-          <li>
-            <p>Welcome, {user.firstName}!</p>
+          <>
+            <li>
+               <span>Welcome, </span>
+              <NavLink to={`/profile/${user.id}`}>
+               {user.firstName}!
+              </NavLink>
+            </li>
             |
-            <a href="/" onClick={(e) => {
-              e.preventDefault();
-              logout();
-            }}>
-              Logout
-            </a>
-          </li>
-          
-        )
-
-        }
+            <li>
+              <a
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  logout();
+                }}
+              >
+                Logout
+              </a>
+            </li>
+          </>
+        )}
       </menu>
     </nav>
-  )
+  );
 }

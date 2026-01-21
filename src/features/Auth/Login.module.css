@@ -75,7 +75,7 @@
   background-color: rgb(217, 175, 40);
   border: none;
   border-radius: 12px; 
-  box-shadow: 0 0 25px rgba(217, 175, 50, 0.45);
+  /* box-shadow: 0 0 25px rgba(217, 175, 50, 0.45); */
 }
 
 .full-width-button {    
