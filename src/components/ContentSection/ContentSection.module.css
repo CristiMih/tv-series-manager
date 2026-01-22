@@ -56,7 +56,7 @@
 }
 
 .joinDiv {
-  height: 330px;
+  min-height: 330px;
   max-width: 770px;
   padding: 20px 100px;
   border: 5px solid white;
@@ -94,4 +94,91 @@
   display: flex;
   justify-content: center;
   gap: 40px;
+}
+
+@media (max-width: 1800px) {
+  .cards-container img {
+  height: 300px;
+  } 
+}
+
+@media (max-width: 1700px) {
+  .joinDiv {
+     padding: 20px 20px;
+  }
+
+  .section {
+    gap: 20px;
+    position: relative;
+  }
+
+  .section img { 
+    position: absolute;
+    height: 150px;
+    left: 0%;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 1350px) {
+  .cards-container img {
+  height: 250px;
+  }
+
+}
+
+@media (max-width: 1150px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+  .cards-container img {
+  height: 220px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .cards-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+    .cards-container img {
+    height: 300px;
+
+  }
+
+  .section img {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .findShow {
+  transform: translateX(-100px) rotate(5deg);
+  }
+
+  .keepTrack-container {
+     margin-left: 20px;
+  }
+
+  .keepTrack-container img{
+    height: 70px;
+  }
+
+  .cards-container img {
+    height: 250px;
+  }
+
+  .joinDiv {
+    border: none;
+  }
+
+  .joinDiv div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+
+  }
+
 }

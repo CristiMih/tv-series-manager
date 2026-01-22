@@ -4,35 +4,40 @@ import logo from "../../assets/logo1.svg";
 import SearchForm from "./SearchForm";
 import { useAuthContext } from "../../features/Auth/AuthContext";
 
-
 export default function Nav() {
   const { user, logout } = useAuthContext();
+
   return (
     <nav className={styles.nav}>
       <Link to="/">
         <img src={logo} alt="" />
       </Link>
-      <SearchForm />
+
+      <div className={styles.searchWrapper}>
+        <SearchForm />
+      </div>
+
       <menu className={styles.menu}>
         {!user && (
           <>
             <li>
               <NavLink to="/login">Login</NavLink>
             </li>
+          |
             <li>
               <NavLink to="/register">Register</NavLink>
             </li>
           </>
         )}
+
         {user && (
           <>
             <li>
-               <span>Welcome, </span>
+              <span>Welcome, </span>
               <NavLink to={`/profile/${user.id}`}>
-               {user.firstName}!
+                {user.firstName}!
               </NavLink>
             </li>
-            |
             <li>
               <a
                 href="/"

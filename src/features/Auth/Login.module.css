@@ -109,3 +109,49 @@
   height: 80px;
 }
 
+@media (max-width: 768px) {
+
+  /* Formularul devine pe o singură coloană */
+  .brand-form {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+  }
+
+  /* Titlul și subtitlul rămân full width */
+  .full-width {
+    grid-column: 1 / -1 !important;
+    text-align: center;
+  }
+
+  /* Label-urile vin deasupra inputurilor */
+  .brand-form > label {
+    justify-self: start !important;
+    align-self: start !important;
+    margin-top: 0.5rem;
+  }
+
+  /* Inputurile ocupă toată lățimea */
+  .brand-form input {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Butonul devine full width și vine sub inputuri */
+  .full-width-button {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    justify-self: center !important;
+    margin-top: 1rem;
+  }
+
+  /* Imaginile decorative se micșorează sau se ascund */
+  .brand-form img {
+    display: none;
+  }
+}
+
+
+

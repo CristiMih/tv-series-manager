@@ -1,6 +1,7 @@
 .nav{
   display: flex;
   position: sticky;
+  position: relative;
   top: 0;
   z-index: 3;
   background-color: #202625;
@@ -36,6 +37,7 @@
 
 .nav img {
   height: 55px;
+  transition: transform 0.3s ease;
 }
 
 .menu{
@@ -47,6 +49,42 @@
 
   & a {
     text-decoration: none;
+  }
+
+}
+
+/* ----------------------------- */
+/* 📱 MOBILE RESPONSIVE */
+/* ----------------------------- */
+
+@media (max-width: 920px) {
+  .nav {
+    padding: 10px 15px;
+    flex-wrap: wrap; /* permite SearchForm să cadă jos */
+  }
+
+  /* Crop logo fără să-l micșorezi */
+  .nav img {
+    width: 90px;        /* cât vrei să se vadă */
+    height: 55px;
+    object-fit: cover;  /* taie restul imaginii */
+    object-position: left;
+  }
+
+  /* SearchForm mutat pe rândul 2 */
+  .searchWrapper {
+     order: 3; 
+     width: 100%;
+     max-width: 400px;
+     margin: 0 auto;
+     margin-top: 10px; 
+
+  }
+
+  .nav input {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
   }
 
 }
