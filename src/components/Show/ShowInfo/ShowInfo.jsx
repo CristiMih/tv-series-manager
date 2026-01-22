@@ -118,6 +118,7 @@ export default function ShowInfo() {
         premiered: show.premiered,
         ended: show.ended,
         episodesReleased: show.episodesReleased,
+        episodesWatched: 0,
         rating: show.rating?.average,
         summary: show.summary,
       };

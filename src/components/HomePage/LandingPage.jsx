@@ -1,4 +1,4 @@
-import styles from "./ContentSection.module.css";
+import styles from "./LandingPage.module.css";
 import BBCard from "../../assets/example-cards/breaking-bad-card.png";
 import GoTCard from "../../assets/example-cards/game-of-thrones-card.png";
 import TWDCard from "../../assets/example-cards/walking-dead-card.png";

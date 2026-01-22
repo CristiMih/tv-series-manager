@@ -74,16 +74,22 @@ export default function TrackEpisodes() {
           (ep) => ep.airstamp && new Date(ep.airstamp) <= today,
         ).length;
 
-        const seasonsWithEpisodes = seasonsData.map((season) => {
-          const episodesInSeason = episodesData.filter(
-            (ep) => ep.season === season.number && ep.type === "regular",
-          );
-          return {
-            ...season,
-            episodes: episodesInSeason,
-            episodesCount: episodesInSeason.length,
-          };
-        });
+        const seasonsWithEpisodes = seasonsData
+          .map((season) => {
+            const episodesInSeason = episodesData.filter(
+              (ep) =>
+                ep.season === season.number &&
+                ep.type === "regular" &&
+                ep.airstamp &&
+                new Date(ep.airstamp) <= today,
+            );
+            return {
+              ...season,
+              episodes: episodesInSeason,
+              episodesCount: episodesInSeason.length,
+            };
+          })
+          .filter((season) => season.episodesCount > 0);
 
         setShow({
           ...showData,
@@ -173,66 +179,66 @@ export default function TrackEpisodes() {
   }
 
   async function handleSeasonToggle(e, seasonNumber) {
-  e.stopPropagation();
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    e.stopPropagation();
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const season = show.seasons.find((s) => s.number === seasonNumber);
-  if (!season) return;
+    const season = show.seasons.find((s) => s.number === seasonNumber);
+    if (!season) return;
 
-  const isComplete = isSeasonComplete(seasonNumber);
+    const isComplete = isSeasonComplete(seasonNumber);
 
-  // Dacă e complet → uncheck toate
-  if (isComplete) {
-    for (const ep of season.episodes) {
-      const existing = watchedEpisodes.find((w) => w.episodeId === ep.id);
-      if (existing) {
-        await fetch(`${API_URL}/660/watchedEpisodes/${existing.id}`, {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${accessToken}` },
-        });
-
-      }
-    }
-
-    setWatchedEpisodes((prev) =>
-      prev.filter((w) => !season.episodes.some((ep) => ep.id === w.episodeId)),
-    );
-    return;
-  }
-
-  // Dacă nu e complet → mark toate ca watched
-  for (const ep of season.episodes) {
-    if (!isEpisodeWatched(ep.id)) {
-      const watchedEpisode = {
-        userId: user.id,
-        showId: id,
-        episodeId: ep.id,
-        runtime: ep.runtime || 45,
-      };
-
-      try {
-        const res = await fetch(`${API_URL}/watchedEpisodes`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify(watchedEpisode),
-        });
-
-        if (res.ok) {
-          const created = await res.json();
-          setWatchedEpisodes((prev) => [...prev, created]);
+    // Dacă e complet → uncheck toate
+    if (isComplete) {
+      for (const ep of season.episodes) {
+        const existing = watchedEpisodes.find((w) => w.episodeId === ep.id);
+        if (existing) {
+          await fetch(`${API_URL}/660/watchedEpisodes/${existing.id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
         }
-      } catch (err) {
-        console.error("Error marking episode:", ep.id, err);
       }
 
-      await delay(5); // delay între POST-uri
+      setWatchedEpisodes((prev) =>
+        prev.filter(
+          (w) => !season.episodes.some((ep) => ep.id === w.episodeId),
+        ),
+      );
+      return;
+    }
+
+    // Dacă nu e complet → mark toate ca watched
+    for (const ep of season.episodes) {
+      if (!isEpisodeWatched(ep.id)) {
+        const watchedEpisode = {
+          userId: user.id,
+          showId: id,
+          episodeId: ep.id,
+          runtime: ep.runtime || 45,
+        };
+
+        try {
+          const res = await fetch(`${API_URL}/watchedEpisodes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(watchedEpisode),
+          });
+
+          if (res.ok) {
+            const created = await res.json();
+            setWatchedEpisodes((prev) => [...prev, created]);
+          }
+        } catch (err) {
+          console.error("Error marking episode:", ep.id, err);
+        }
+
+        await delay(5); // delay între POST-uri
+      }
     }
   }
-}
-
 
   async function handleAllEpisodesToggle(e) {
     e.stopPropagation();
@@ -322,6 +328,20 @@ export default function TrackEpisodes() {
   function handleInfoShowClick() {
     navigate(`/show/${show.id}`);
   }
+
+  // Calculează înainte de return
+  const totalReleased =
+    show?.seasons.reduce((sum, s) => sum + s.episodesCount, 0) || 0;
+  const watchedCount =
+    show?.seasons.reduce(
+      (sum, s) =>
+        sum + s.episodes.filter((ep) => isEpisodeWatched(ep.id)).length,
+      0,
+    ) || 0;
+  const percent = totalReleased > 0 ? (watchedCount / totalReleased) * 100 : 0;
+
+
+  
   if (loading) return <p>Loading...</p>;
   return (
     <main className={styles.trackWrapper}>
@@ -346,7 +366,14 @@ export default function TrackEpisodes() {
           </p>
         </div>
 
-        <div className={styles.bottomBar}></div>
+        <div className={styles.bottomBar}>
+          <div className={styles.progressBase} />
+          <div
+            className={styles.progressOverlay}
+            style={{ width: `${percent}%` }}
+          />
+          {percent === 100 && <div className={styles.progressComplete} />}
+        </div>
       </section>
 
       <div className={styles.titleDiv}>EPISODES</div>
@@ -395,7 +422,21 @@ export default function TrackEpisodes() {
                 </button>
               </div>
 
-              <div className={styles.bottomBar}></div>
+              <div className={styles.bottomBar}>
+                {/* Galben închis de bază */}
+                <div className={styles.progressBase}></div>
+                {/* Overlay galben deschis (progres actual) */}
+                <div
+                  className={styles.progressOverlay}
+                  style={{
+                    width: `${(getSeasonProgress(season.number).split("/")[0] / getSeasonProgress(season.number).split("/")[1]) * 100}%`,
+                  }}
+                />
+                {/* Verde complet (doar când 100%) */}
+                {isSeasonComplete(season.number) && (
+                  <div className={styles.progressComplete} />
+                )}
+              </div>
             </div>
 
             {openSeasons.includes(season.number) && (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Nav from "./components/Nav/Nav"
-import ContentSection from "./components/ContentSection/Content";
+import Homepage from "./components/HomePage/Homepage"
 import Discover from "./components/Discover/Discover"
 import Show from "./components/Show/Show"
 import Register from "./features/Auth/Register";
@@ -20,7 +20,7 @@ export default function App() {
       <AuthContextProvider>
         <Nav />
         <Routes>
-          <Route path="/" element={<ContentSection />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="discover" element={<Discover />}/>
           <Route path="/show/:id" element={<Show />}/>
           <Route path="/login" element={<Login />}/>
