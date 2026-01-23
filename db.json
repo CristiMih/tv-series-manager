@@ -17,10 +17,49 @@
       "premiered": "2011-04-17",
       "ended": "2019-05-19",
       "episodesReleased": 73,
-      "episodesWatched": 73,
+      "episodesWatched": 0,
       "rating": 8.9,
       "summary": "<p>Based on the bestselling book series <i>A Song of Ice and Fire</i> by George R.R. Martin, this sprawling new HBO drama is set in a world where summers span decades and winters can last a lifetime. From the scheming south and the savage eastern lands, to the frozen north and ancient Wall that protects the realm from the mysterious darkness beyond, the powerful families of the Seven Kingdoms are locked in a battle for the Iron Throne. This is a story of duplicity and treachery, nobility and honor, conquest and triumph. In the <b>Game of Thrones</b>, you either win or you die.</p>",
       "id": 1
+    },
+    {
+      "userId": 1,
+      "showId": 169,
+      "name": "Breaking Bad",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/501/1253519.jpg",
+      "premiered": "2008-01-20",
+      "ended": "2019-10-11",
+      "episodesReleased": 62,
+      "episodesWatched": 0,
+      "rating": 9.2,
+      "summary": "<p><b>Breaking Bad</b> follows protagonist Walter White, a chemistry teacher who lives in New Mexico with his wife and teenage son who has cerebral palsy. White is diagnosed with Stage III cancer and given a prognosis of two years left to live. With a new sense of fearlessness based on his medical prognosis, and a desire to secure his family's financial security, White chooses to enter a dangerous world of drugs and crime and ascends to power in this world. The series explores how a fatal diagnosis such as White's releases a typical man from the daily concerns and constraints of normal society and follows his transformation from mild family man to a kingpin of the drug trade.</p>",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "showId": 53063,
+      "name": "A Knight of the Seven Kingdoms",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/608/1521912.jpg",
+      "premiered": "2026-01-18",
+      "ended": null,
+      "episodesReleased": 1,
+      "episodesWatched": 0,
+      "rating": 8.4,
+      "summary": "<p>A century before the events of <i>Game of Thrones</i>, two unlikely heroes wandered Westeros: a young, naive but courageous knight, Ser Duncan the Tall, and his diminutive squire, Egg. Set in an age when the Targaryen line still holds the Iron Throne and the last dragon has not yet passed from living memory, great destinies, powerful foes, and dangerous exploits await these improbable and incomparable friends.</p>",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "showId": 40618,
+      "name": "Metástasis",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/181/453956.jpg",
+      "premiered": "2014-06-12",
+      "ended": "2014-09-05",
+      "episodesReleased": 62,
+      "episodesWatched": 0,
+      "rating": null,
+      "summary": "<p>A Spanish language adaption of the hit US show <i>Breaking Bad.</i></p><p>Walter Blanco is a frustrated professor of chemistry in an institute, the father of a disabled young man, Walter Blanco Jr., and with his pregnant wife, Cielo Blanco. Walter also works in a car wash in the afternoon. When he is diagnosed with terminal lung cancer, he considers what will happen to his family when he dies.<br /><br />In a raid by the Anti-narcotics Police organized by Walter's brother-in-law, Henry Navarro, he recognizes a former student of his, José Miguel Rosas, whom he contacts to manufacture and sell methamphetamine and thus ensure the economic well-being of his family. But the approach to the world of drugs and the dealings with traffickers and mafiosi contaminates the personality of Walter, who gradually abandons his straight and predictable personality to become someone without too many scruples when it comes to getting what he wants.</p>",
+      "id": 4
     }
   ],
   "watchedEpisodes": []

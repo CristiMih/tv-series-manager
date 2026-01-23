@@ -157,6 +157,7 @@ export default function ShowInfo() {
         premiered: show.premiered || null,
         ended: show.ended || null,
         episodesReleased: show.episodesReleased,
+        episodesWatched: show.episodesReleased,
         rating: show.rating?.average || null,
         summary: show.summary || "",
       };

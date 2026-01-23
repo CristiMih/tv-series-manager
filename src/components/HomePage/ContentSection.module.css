@@ -5,6 +5,12 @@
   font-style: normal;
 }
 
+.showsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem; 
+}
+
 .card {
     height: 370px;
     width: 465px;

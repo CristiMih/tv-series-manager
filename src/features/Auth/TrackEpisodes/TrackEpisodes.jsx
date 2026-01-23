@@ -8,6 +8,7 @@ export default function TrackEpisodes() {
   const [loading, setLoading] = useState(true);
   const [openSeasons, setOpenSeasons] = useState([]);
   const [watchedEpisodes, setWatchedEpisodes] = useState([]);
+  const [triggerRefresh, setTriggerRefresh] = useState(0);
 
   const { user, accessToken } = useAuthContext();
   const { id } = useParams();
@@ -143,6 +144,7 @@ export default function TrackEpisodes() {
         if (!res.ok) throw new Error("Failed to delete");
 
         setWatchedEpisodes((prev) => prev.filter((w) => w.episodeId !== ep.id));
+        setTriggerRefresh(prev => prev + 1);
       } catch (err) {
         console.error("Eroare la ștergere episod:", err);
       }
@@ -173,9 +175,11 @@ export default function TrackEpisodes() {
       console.log("Created:", created);
 
       setWatchedEpisodes((prev) => [...prev, created]);
+      setTriggerRefresh(prev => prev + 1);
     } catch (err) {
       console.error("Eroare la salvare episod:", err);
     }
+    
   }
 
   async function handleSeasonToggle(e, seasonNumber) {
@@ -204,6 +208,7 @@ export default function TrackEpisodes() {
           (w) => !season.episodes.some((ep) => ep.id === w.episodeId),
         ),
       );
+      setTriggerRefresh(prev => prev + 1);
       return;
     }
 
@@ -238,6 +243,7 @@ export default function TrackEpisodes() {
         await delay(5); // delay între POST-uri
       }
     }
+    setTriggerRefresh(prev => prev + 1);
   }
 
   async function handleAllEpisodesToggle(e) {
@@ -275,6 +281,7 @@ export default function TrackEpisodes() {
       } catch (err) {
         console.error("Error clearing all:", err);
       }
+      setTriggerRefresh(prev => prev + 1);
       return;
     }
 
@@ -323,6 +330,7 @@ export default function TrackEpisodes() {
     } catch (err) {
       console.error("Error marking all seen:", err);
     }
+    setTriggerRefresh(prev => prev + 1);
   }
 
   function handleInfoShowClick() {
@@ -340,8 +348,48 @@ export default function TrackEpisodes() {
     ) || 0;
   const percent = totalReleased > 0 ? (watchedCount / totalReleased) * 100 : 0;
 
+  async function refreshData() {
+    try {
+      // Refresh watchedEpisodes
+      const watchedRes = await fetch(
+        `${API_URL}/watchedEpisodes?userId=${user.id}&showId=${id}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } },
+      );
+      const watchedData = await watchedRes.json();
+      setWatchedEpisodes(Array.isArray(watchedData) ? watchedData : []);
 
-  
+      // Sync userShows episodesWatched
+      const episodesWatched = watchedData.length;
+      const userShowRes = await fetch(
+        `${API_URL}/660/userShows?userId=${user.id}&showId=${id}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } },
+      );
+      const userShowData = await userShowRes.json();
+
+      if (userShowData.length > 0) {
+        const userShow = userShowData[0];
+        if (userShow.episodesWatched !== episodesWatched) {
+          await fetch(`${API_URL}/660/userShows/${userShow.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({ episodesWatched }),
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Refresh error:", err);
+    }
+  }
+
+  useEffect(() => {
+    if (triggerRefresh > 0) {
+      refreshData();
+    }
+  }, [triggerRefresh]);
+
   if (loading) return <p>Loading...</p>;
   return (
     <main className={styles.trackWrapper}>
