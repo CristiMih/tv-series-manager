@@ -6,7 +6,12 @@ export default function SearchForm(){
 
   function handleSubmit(e){
     e.preventDefault();
+
+    if (query.trim() === '') { 
+      return;
+     }
     navigate(`/discover?query=${query}`);
+    setQuery('');
   }
   return(
     <form onSubmit={handleSubmit}>
