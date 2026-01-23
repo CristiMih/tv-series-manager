@@ -1,0 +1,29 @@
+footer{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+  background-color: #202625;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 100px;
+ 
+  font-size: 18px;
+}
+
+footer span {
+     color: #ece9d7;
+     text-decoration: none;
+}
+
+footer div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+footer img {
+    height: 30px;
+}

@@ -53,11 +53,18 @@
 
 }
 
-/* ----------------------------- */
-/* 📱 MOBILE RESPONSIVE */
-/* ----------------------------- */
+@media (max-width:920px) {
+  .nav {
+    padding: 20px 30px;
+  }
 
-@media (max-width: 920px) {
+  .nav input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 650px) {
+
   .nav {
     padding: 10px 15px;
     flex-wrap: wrap; /* permite SearchForm să cadă jos */

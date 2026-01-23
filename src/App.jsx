@@ -9,6 +9,7 @@ import Login from "./features/Auth/Login";
 import TrackEpisodes from "./features/Auth/TrackEpisodes/TrackEpisodes";
 import ProfilePage from "./features/Auth/ProfilePage"
 import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer/Footer"
 import "./App.css"
 import { AuthContextProvider } from "./features/Auth/AuthContext";
 
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/track/:id" element={<TrackEpisodes/>} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
         </Routes>
+        <Footer />
 
         <ToastContainer />
       </AuthContextProvider>
