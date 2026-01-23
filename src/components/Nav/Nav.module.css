@@ -59,7 +59,7 @@
   }
 
   .nav input {
-    width: 200px;
+    width: 180px;
   }
 }
 
@@ -95,3 +95,7 @@
   }
 
 }
+
+.nav .userName {
+    text-decoration: underline;
+  }

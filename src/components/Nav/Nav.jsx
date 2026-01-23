@@ -34,7 +34,7 @@ export default function Nav() {
           <>
             <li>
               <span>Welcome, </span>
-              <NavLink to={`/profile/${user.id}`}>
+              <NavLink to={`/profile/${user.id}`} className={styles.userName}>
                 {user.firstName}!
               </NavLink>
             </li>

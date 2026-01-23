@@ -24,17 +24,17 @@ export default function ShowInfo() {
         const showData = await showRes.json();
 
         const imagesRes = await fetch(
-          `https://api.tvmaze.com/shows/${id}/images`
+          `https://api.tvmaze.com/shows/${id}/images`,
         );
         const imagesData = await imagesRes.json();
 
         const seasonsRes = await fetch(
-          `https://api.tvmaze.com/shows/${id}/seasons`
+          `https://api.tvmaze.com/shows/${id}/seasons`,
         );
         const seasonsData = await seasonsRes.json();
 
         const episodesRes = await fetch(
-          `https://api.tvmaze.com/shows/${id}/episodes`
+          `https://api.tvmaze.com/shows/${id}/episodes`,
         );
 
         const episodesData = await episodesRes.json();
@@ -42,16 +42,16 @@ export default function ShowInfo() {
         const today = new Date();
 
         const releasedEpisodes = episodesData.filter(
-          (ep) => ep.airstamp && new Date(ep.airstamp) <= today
+          (ep) => ep.airstamp && new Date(ep.airstamp) <= today,
         ).length;
 
         setShow({
           ...showData,
           bigImages: imagesData.filter(
-            (img) => img.resolutions?.original?.width >= 1500
+            (img) => img.resolutions?.original?.width >= 1500,
           ),
           seasonsCount: seasonsData.filter(
-            (s) => s.premiereDate && new Date(s.premiereDate) <= today
+            (s) => s.premiereDate && new Date(s.premiereDate) <= today,
           ).length,
           episodesReleased: releasedEpisodes,
         });
@@ -64,7 +64,7 @@ export default function ShowInfo() {
 
         const existsRes = await fetch(
           `${API_URL}/660/userShows?userId=${user.id}&showId=${showData.id}`,
-          { headers: { Authorization: `Bearer ${accessToken}` } }
+          { headers: { Authorization: `Bearer ${accessToken}` } },
         );
         if (existsRes.ok) {
           const exists = await existsRes.json();
@@ -96,7 +96,7 @@ export default function ShowInfo() {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        }
+        },
       );
 
       if (!existsRes.ok) {
@@ -109,6 +109,11 @@ export default function ShowInfo() {
           return;
         }
       }
+      const rawSummary = show.summary || "";
+      const words = rawSummary.split(" ").slice(0, 25).join(" ");
+      const maxChars = 120;
+      const shortSummary =
+        words.length > maxChars ? words.slice(0, maxChars) : words;
 
       const watchlistItem = {
         userId: user.id,
@@ -120,7 +125,7 @@ export default function ShowInfo() {
         episodesReleased: show.episodesReleased,
         episodesWatched: 0,
         rating: show.rating?.average,
-        summary: show.summary,
+        summary: shortSummary,
       };
 
       const postRes = await fetch(`${API_URL}/660/userShows`, {
@@ -147,6 +152,11 @@ export default function ShowInfo() {
       setShowModal(true);
       return;
     }
+    const rawSummary = show.summary || "";
+      const words = rawSummary.split(" ").slice(0, 25).join(" ");
+      const maxChars = 120;
+      const shortSummary =
+        words.length > maxChars ? words.slice(0, maxChars) : words;
 
     try {
       const showItem = {
@@ -159,7 +169,7 @@ export default function ShowInfo() {
         episodesReleased: show.episodesReleased,
         episodesWatched: show.episodesReleased,
         rating: show.rating?.average || null,
-        summary: show.summary || "",
+        summary: shortSummary || "",
       };
 
       await fetch(`${API_URL}/660/userShows`, {
@@ -172,14 +182,16 @@ export default function ShowInfo() {
       });
 
       const episodesRes = await fetch(
-        `https://api.tvmaze.com/shows/${id}/episodes`
+        `https://api.tvmaze.com/shows/${id}/episodes`,
       );
       const episodes = await episodesRes.json();
       const today = new Date();
 
       const filteredEpisodes = episodes.filter(
         (ep) =>
-          ep.type === "regular" && ep.airstamp && new Date(ep.airstamp) <= today
+          ep.type === "regular" &&
+          ep.airstamp &&
+          new Date(ep.airstamp) <= today,
       );
 
       const seenItems = filteredEpisodes.map((ep) => ({
@@ -216,7 +228,7 @@ export default function ShowInfo() {
         `${API_URL}/660/userShows?userId=${user.id}&showId=${show.id}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        },
       );
 
       const showItems = await showRes.json();
@@ -236,7 +248,7 @@ export default function ShowInfo() {
         `${API_URL}/660/watchedEpisodes?userId=${user.id}&showId=${show.id}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        },
       );
 
       const episodes = await episodesRes.json();

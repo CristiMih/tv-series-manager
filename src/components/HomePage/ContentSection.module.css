@@ -8,7 +8,9 @@
 .showsDiv {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem; 
+  gap: 5rem; 
+  padding: 5rem;
+  justify-content: center;
 }
 
 .card {
@@ -20,7 +22,6 @@
     gap: 10px;
     border-radius: 15px;
     color: white;
-    margin: 50px 50px;
     padding-bottom: 20px;
     position: relative;
     overflow: hidden;
@@ -29,11 +30,23 @@
 .card img {
     height: 100%;
     border-radius: 7px;
+    cursor: pointer;
+}
+
+.card img:hover {
+    filter: contrast(1.1);
+    transition: all 0.1s ease-in;
 }
 
 .content h3 {
     margin-bottom: 35px;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.content h3:hover {
+    opacity: 0.8;
+    transition: all 0.1s ease-in;
 }
 
 .content > div {
@@ -80,13 +93,20 @@
 }
 
 .progressionBar {
-    position: absolute;
-    height: 10px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #6F581A;
+  position: absolute;
+  height: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #6F581A; /* culoarea de fundal */
+  overflow: hidden;
 }
+
+.progressFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
 
 .delete {
     position: absolute;
