@@ -9,6 +9,7 @@ export default function TrackEpisodes() {
   const [openSeasons, setOpenSeasons] = useState([]);
   const [watchedEpisodes, setWatchedEpisodes] = useState([]);
   const [triggerRefresh, setTriggerRefresh] = useState(0);
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
 
   const { user, accessToken } = useAuthContext();
   const { id } = useParams();
@@ -144,14 +145,14 @@ export default function TrackEpisodes() {
         if (!res.ok) throw new Error("Failed to delete");
 
         setWatchedEpisodes((prev) => prev.filter((w) => w.episodeId !== ep.id));
-        setTriggerRefresh(prev => prev + 1);
+        setTriggerRefresh((prev) => prev + 1);
       } catch (err) {
         console.error("Eroare la ștergere episod:", err);
       }
       return;
     }
 
-    // dacă nu există -> WATCH (POST)
+    // dacă nu există -> WATCH
     const watchedEpisode = {
       userId: user.id,
       showId: id,
@@ -171,21 +172,20 @@ export default function TrackEpisodes() {
 
       if (!res.ok) throw new Error("Failed to save");
 
-      const created = await res.json(); // json-server returnează obiectul cu id nou [web:51]
+      const created = await res.json();
       console.log("Created:", created);
 
       setWatchedEpisodes((prev) => [...prev, created]);
-      setTriggerRefresh(prev => prev + 1);
+      setTriggerRefresh((prev) => prev + 1);
     } catch (err) {
       console.error("Eroare la salvare episod:", err);
     }
-    
   }
 
   async function handleSeasonToggle(e, seasonNumber) {
     e.stopPropagation();
+    setLoadingAnimation(true);
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
     const season = show.seasons.find((s) => s.number === seasonNumber);
     if (!season) return;
 
@@ -208,7 +208,8 @@ export default function TrackEpisodes() {
           (w) => !season.episodes.some((ep) => ep.id === w.episodeId),
         ),
       );
-      setTriggerRefresh(prev => prev + 1);
+      setTriggerRefresh((prev) => prev + 1);
+      setLoadingAnimation(false);
       return;
     }
 
@@ -238,12 +239,17 @@ export default function TrackEpisodes() {
           }
         } catch (err) {
           console.error("Error marking episode:", ep.id, err);
+        } finally {
+          
         }
 
         await delay(5); // delay între POST-uri
       }
+      
     }
-    setTriggerRefresh(prev => prev + 1);
+    await delay(100);
+    setLoadingAnimation(false);
+    setTriggerRefresh((prev) => prev + 1);
   }
 
   async function handleAllEpisodesToggle(e) {
@@ -253,7 +259,7 @@ export default function TrackEpisodes() {
       setShowModal(true);
       return;
     }
-
+    setLoadingAnimation(true);
     const isComplete = isShowComplete();
 
     if (isComplete) {
@@ -280,8 +286,10 @@ export default function TrackEpisodes() {
         setWatchedEpisodes(await refreshed.json());
       } catch (err) {
         console.error("Error clearing all:", err);
+      } finally {
+        setLoadingAnimation(false);
       }
-      setTriggerRefresh(prev => prev + 1);
+      setTriggerRefresh((prev) => prev + 1);
       return;
     }
 
@@ -329,8 +337,10 @@ export default function TrackEpisodes() {
       setWatchedEpisodes(await refreshed.json());
     } catch (err) {
       console.error("Error marking all seen:", err);
+    } finally {
+      setLoadingAnimation(false);
     }
-    setTriggerRefresh(prev => prev + 1);
+    setTriggerRefresh((prev) => prev + 1);
   }
 
   function handleInfoShowClick() {
@@ -360,6 +370,10 @@ export default function TrackEpisodes() {
 
       // Sync userShows episodesWatched
       const episodesWatched = watchedData.length;
+      const totalRuntime = watchedData.reduce(
+        (sum, ep) => sum + (ep.runtime || 0),
+        0,
+      );
       const userShowRes = await fetch(
         `${API_URL}/660/userShows?userId=${user.id}&showId=${id}`,
         { headers: { Authorization: `Bearer ${accessToken}` } },
@@ -368,14 +382,17 @@ export default function TrackEpisodes() {
 
       if (userShowData.length > 0) {
         const userShow = userShowData[0];
-        if (userShow.episodesWatched !== episodesWatched) {
+        if (
+          userShow.episodesWatched !== episodesWatched ||
+          userShow.runtime !== totalRuntime
+        ) {
           await fetch(`${API_URL}/660/userShows/${userShow.id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify({ episodesWatched }),
+            body: JSON.stringify({ episodesWatched, runtime: totalRuntime }),
           });
         }
       }
@@ -393,6 +410,12 @@ export default function TrackEpisodes() {
   if (loading) return <p>Loading...</p>;
   return (
     <main className={styles.trackWrapper}>
+      {loadingAnimation && (
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner}></div>
+          <span>Loading...</span>
+        </div>
+      )}
       <section
         className={styles.infoSection}
         style={{

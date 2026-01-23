@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 export default function ContentSection() {
   const [shows, setShows] = useState([]);
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
 
   const { user, accessToken } = useAuthContext();
   const API_URL = import.meta.env.VITE_API_URL;
@@ -26,6 +27,7 @@ export default function ContentSection() {
   }, [user, accessToken]);
 
   async function handleRemoveClick(show) {
+    setLoadingAnimation(true);
     try {
       const showRes = await fetch(
         `${API_URL}/660/userShows?userId=${user.id}&showId=${show.showId}`,
@@ -65,15 +67,23 @@ export default function ContentSection() {
       setShows((prev) => prev.filter((s) => s.id !== show.id));
     } catch (err) {
       console.error("Error removing show:", err);
+    } finally {
+      setLoadingAnimation(false);
     }
   }
 
-   function navigateToShow(show) {
+  function navigateToShow(show) {
     navigate(`/track/${show.showId}`);
   }
 
   return (
     <>
+      {loadingAnimation && (
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner}></div>
+          <span>Loading...</span>
+        </div>
+      )}
       <div className={styles.showsDiv}>
         {shows.map((show) => (
           <div key={show.id} className={styles.card}>
@@ -85,11 +95,15 @@ export default function ContentSection() {
             </button>
 
             <div className={styles.imageWrapper}>
-              <img src={show.image} alt={show.name} onClick={() => navigateToShow(show)}/>
+              <img
+                src={show.image}
+                alt={show.name}
+                onClick={() => navigateToShow(show)}
+              />
             </div>
 
             <div className={styles.content}>
-              <h3 onClick={() => navigateToShow(show)} >{show.name}</h3>
+              <h3 onClick={() => navigateToShow(show)}>{show.name}</h3>
 
               <div>
                 <p>

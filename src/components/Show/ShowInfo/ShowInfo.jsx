@@ -11,6 +11,7 @@ export default function ShowInfo() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [isInDb, setIsInDb] = useState(false);
+  const [loadingWatchlist, setLoadingWatchlist] = useState(false);
 
   const { user, accessToken } = useAuthContext();
   const { id } = useParams();
@@ -88,7 +89,7 @@ export default function ShowInfo() {
       setShowModal(true);
       return;
     }
-
+    setLoadingWatchlist(true);
     try {
       const existsRes = await fetch(
         `${API_URL}/660/userShows?userId=${user.id}&showId=${show.id}`,
@@ -126,6 +127,7 @@ export default function ShowInfo() {
         episodesWatched: 0,
         rating: show.rating?.average,
         summary: shortSummary,
+        runtime: 0,
       };
 
       const postRes = await fetch(`${API_URL}/660/userShows`, {
@@ -144,6 +146,8 @@ export default function ShowInfo() {
       setIsInDb(true);
     } catch (err) {
       console.error("Error saving show:", err);
+    } finally {
+      setLoadingWatchlist(false);
     }
   }
 
@@ -152,35 +156,17 @@ export default function ShowInfo() {
       setShowModal(true);
       return;
     }
+
+    setLoadingWatchlist(true);
+
     const rawSummary = show.summary || "";
-      const words = rawSummary.split(" ").slice(0, 25).join(" ");
-      const maxChars = 120;
-      const shortSummary =
-        words.length > maxChars ? words.slice(0, maxChars) : words;
+    const words = rawSummary.split(" ").slice(0, 25).join(" ");
+    const maxChars = 120;
+    const shortSummary =
+      words.length > maxChars ? words.slice(0, maxChars) : words;
 
     try {
-      const showItem = {
-        userId: user.id,
-        showId: show.id,
-        name: show.name,
-        image: show.image?.medium || null,
-        premiered: show.premiered || null,
-        ended: show.ended || null,
-        episodesReleased: show.episodesReleased,
-        episodesWatched: show.episodesReleased,
-        rating: show.rating?.average || null,
-        summary: shortSummary || "",
-      };
-
-      await fetch(`${API_URL}/660/userShows`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify(showItem),
-      });
-
+      // 1. Luăm episoadele înainte de a crea showItem
       const episodesRes = await fetch(
         `https://api.tvmaze.com/shows/${id}/episodes`,
       );
@@ -194,6 +180,38 @@ export default function ShowInfo() {
           new Date(ep.airstamp) <= today,
       );
 
+      // 2. Calculăm runtime total
+      const totalRuntime = filteredEpisodes.reduce(
+        (sum, ep) => sum + (ep.runtime || 0),
+        0,
+      );
+
+      // 3. Construim showItem cu runtime total
+      const showItem = {
+        userId: user.id,
+        showId: show.id,
+        name: show.name,
+        image: show.image?.medium || null,
+        premiered: show.premiered || null,
+        ended: show.ended || null,
+        episodesReleased: show.episodesReleased,
+        episodesWatched: show.episodesReleased,
+        rating: show.rating?.average || null,
+        summary: shortSummary || "",
+        runtime: totalRuntime, 
+      };
+
+      // 4. Salvăm show-ul în DB
+      await fetch(`${API_URL}/660/userShows`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(showItem),
+      });
+
+      // 5. Pregătim episoadele văzute
       const seenItems = filteredEpisodes.map((ep) => ({
         userId: user.id,
         showId: show.id,
@@ -203,6 +221,7 @@ export default function ShowInfo() {
 
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+      // 6. Le trimitem pe rând
       for (const item of seenItems) {
         await fetch(`${API_URL}/660/watchedEpisodes`, {
           method: "POST",
@@ -219,10 +238,13 @@ export default function ShowInfo() {
       setIsInDb(true);
     } catch (err) {
       console.error("Error marking episodes as seen:", err);
+    } finally {
+      setLoadingWatchlist(false);
     }
   }
 
   async function handleRemoveClick() {
+    setLoadingWatchlist(true);
     try {
       const showRes = await fetch(
         `${API_URL}/660/userShows?userId=${user.id}&showId=${show.id}`,
@@ -263,6 +285,8 @@ export default function ShowInfo() {
       setIsInDb(false);
     } catch (err) {
       console.error("Error removing show:", err);
+    } finally {
+      setLoadingWatchlist(false);
     }
   }
   const navigate = useNavigate();
@@ -311,24 +335,45 @@ export default function ShowInfo() {
         </div>
         {isInDb ? (
           <div className={styles.watchlistBtnDiv}>
-            <button className={styles.watchlistBtn} onClick={handleTrackClick}>
-              Track Episodes
-            </button>
-            <span className={styles.seenBtn} onClick={handleRemoveClick}>
-              REMOVE FROM WATCHLIST
-            </span>
+            {loadingWatchlist ? (
+              <div className={styles.loadingContainer}>
+                <div className={styles.spinner}></div>
+                <span>Removing...</span>
+              </div>
+            ) : (
+              <>
+                <button
+                  className={styles.watchlistBtn}
+                  onClick={handleTrackClick}
+                >
+                  Track Episodes
+                </button>
+                <span className={styles.seenBtn} onClick={handleRemoveClick}>
+                  REMOVE FROM WATCHLIST
+                </span>
+              </>
+            )}
           </div>
         ) : (
           <div className={styles.watchlistBtnDiv}>
-            <button
-              className={styles.watchlistBtn}
-              onClick={handleWatchlistClick}
-            >
-              + Add to watchlist
-            </button>
-            <span className={styles.seenBtn} onClick={handleSeenClick}>
-              ALREADY SEEN IT?
-            </span>
+            {loadingWatchlist ? (
+              <div className={styles.loadingContainer}>
+                <div className={styles.spinner}></div>
+                <span>Saving...</span>
+              </div>
+            ) : (
+              <>
+                <button
+                  className={styles.watchlistBtn}
+                  onClick={handleWatchlistClick}
+                >
+                  + Add to watchlist
+                </button>
+                <span className={styles.seenBtn} onClick={handleSeenClick}>
+                  ALREADY SEEN IT?
+                </span>
+              </>
+            )}
           </div>
         )}
       </section>
