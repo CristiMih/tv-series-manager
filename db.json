@@ -6,8 +6,29 @@
       "firstName": "gradut",
       "lastName": "gradut",
       "id": 1
+    },
+    {
+      "email": "aaaa@aaa.aaa",
+      "password": "$2a$10$jA5ydYqfey1x9PcLTSW02OTYrRqn7.SACe8t6rUSppu7p9BeMyqTi",
+      "firstName": "aaaa",
+      "lastName": "sssss",
+      "id": 2
     }
   ],
-  "userShows": [],
+  "userShows": [
+    {
+      "userId": 1,
+      "showId": 82,
+      "name": "Game of Thrones",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/498/1245274.jpg",
+      "premiered": "2011-04-17",
+      "ended": "2019-05-19",
+      "episodesReleased": 73,
+      "episodesWatched": 0,
+      "rating": 8.9,
+      "summary": "<p>Based on the bestselling book series <i>A Song of Ice and Fire</i> by George R.R. Martin, this sprawling new HBO dram",
+      "id": 1
+    }
+  ],
   "watchedEpisodes": []
 }
