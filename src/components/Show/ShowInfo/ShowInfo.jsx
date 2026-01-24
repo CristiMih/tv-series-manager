@@ -199,7 +199,7 @@ export default function ShowInfo() {
         episodesWatched: show.episodesReleased,
         rating: show.rating?.average || null,
         summary: shortSummary || "",
-        runtime: totalRuntime, 
+        runtime: totalRuntime,
       };
 
       // 4. Salvăm show-ul în DB
@@ -309,33 +309,34 @@ export default function ShowInfo() {
           "--bg-image": `url(${show.bigImages?.[0]?.resolutions?.original?.url})`,
         }}
       >
-        <div className={styles.imgTxt}>
+
           <img
             src={show.image?.medium || noImg}
             alt={show.name || "Show image"}
             className={styles.showImg}
           />
-        
-          <div className={styles["show-data"]}>
-            <h2>{show.name}</h2>
-            <p>
-              {show.seasonsCount || 0}
-              {show.seasonsCount > 1 ? " seasons" : " season"} •
-              {" " + show.premiered?.split("-")[0] || "Unknown"} •
-              {" " + show.status}
-            </p>
-            <p>
-              Rating:{" "}
-              {show.rating?.average ? `${show.rating.average} / 10` : "N/A"}
-            </p>
-            <Rating score={show.rating.average} />
-            <p>{show.genres.join(",").toUpperCase()}</p>
-            <p
-              dangerouslySetInnerHTML={{ __html: show.summary }}
-              className={styles["show-summary"]}
-            ></p>
-          </div>
+
+
+        <div className={styles["show-data"]}>
+          <h2>{show.name}</h2>
+          <p>
+            {show.seasonsCount || 0}
+            {show.seasonsCount > 1 ? " seasons" : " season"} •
+            {" " + show.premiered?.split("-")[0] || "Unknown"} •
+            {" " + show.status}
+          </p>
+          <p>
+            Rating:{" "}
+            {show.rating?.average ? `${show.rating.average} / 10` : "N/A"}
+          </p>
+          <Rating score={show.rating.average} />
+          <p>{show.genres.join(",").toUpperCase()}</p>
         </div>
+          <p
+            dangerouslySetInnerHTML={{ __html: show.summary }}
+            className={styles["show-summary"]}
+          ></p>
+
         {isInDb ? (
           <div className={styles.watchlistBtnDiv}>
             {loadingWatchlist ? (

@@ -1,11 +1,12 @@
 import styles from "./Nav.module.css";
-import { NavLink, Link } from "react-router";
+import { NavLink, Link, useNavigate } from "react-router";
 import logo from "../../assets/logo1.svg";
 import SearchForm from "./SearchForm";
 import { useAuthContext } from "../../features/Auth/AuthContext";
 
 export default function Nav() {
   const { user, logout } = useAuthContext();
+  const navigate = useNavigate();
 
   return (
     <nav className={styles.nav}>
@@ -23,7 +24,7 @@ export default function Nav() {
             <li>
               <NavLink to="/login">Login</NavLink>
             </li>
-          |
+            |
             <li>
               <NavLink to="/register">Register</NavLink>
             </li>
@@ -42,6 +43,7 @@ export default function Nav() {
               <a
                 href="/"
                 onClick={(e) => {
+                  navigate("/");
                   e.preventDefault();
                   logout();
                 }}
