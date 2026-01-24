@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../features/Auth/AuthContext";
 import styles from "./ContentSection.module.css";
 import { useNavigate } from "react-router";
+import noImg from "../../assets/no-image.jpg";
 import Homepage from "./Homepage";
 
 export default function ContentSection() {
@@ -121,7 +122,7 @@ export default function ContentSection() {
 
             <div className={styles.imageWrapper}>
               <img
-                src={show.image}
+                src={show.image || noImg}
                 alt={show.name}
                 onClick={() => navigateToShow(show)}
               />

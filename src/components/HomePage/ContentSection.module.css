@@ -34,8 +34,10 @@
 
 .card img {
     height: 100%;
+    max-width: 242px;
     border-radius: 7px;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .card img:hover {
