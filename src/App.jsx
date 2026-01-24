@@ -32,7 +32,7 @@ export default function App() {
         </Routes>
         <Footer />
 
-        <ToastContainer />
+        <ToastContainer position="bottom-right"/>
       </AuthContextProvider>
     </BrowserRouter>
       

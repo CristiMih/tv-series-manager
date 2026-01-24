@@ -88,6 +88,12 @@
   border: none;
   border-radius: 12px; 
   box-shadow: 0 0 25px rgba(217, 175, 50, 0.45);
+  transition: all 0.2s ease-in;
+}
+
+.joinDiv button:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
 }
 
 .joinDiv div {

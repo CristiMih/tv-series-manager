@@ -170,4 +170,11 @@
   .brand-form img {
     display: none;
   }
+
+  
+}
+.error { 
+  color: red; 
+  font-size: 1.6rem; 
+  margin-bottom: 10px; 
 }

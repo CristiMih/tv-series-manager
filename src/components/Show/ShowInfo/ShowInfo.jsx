@@ -2,6 +2,7 @@ import { useAuthContext } from "../../../features/Auth/AuthContext";
 import AuthRequiredModal from "./AuthRequiredModal";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import styles from "../Show.module.css";
 import Rating from "./Rating";
 import noImg from "../../../assets/no-image.jpg";
@@ -106,7 +107,7 @@ export default function ShowInfo() {
         const exists = await existsRes.json();
 
         if (exists.length > 0) {
-          console.log("Show already in watchlist!");
+          toast.info("Show already in watchlist!");
           return;
         }
       }
@@ -142,7 +143,7 @@ export default function ShowInfo() {
         console.error("POST failed:", postRes.status);
         return;
       }
-      console.log("Added to watchlist!");
+      toast.success("Added to watchlist!");
       setIsInDb(true);
     } catch (err) {
       console.error("Error saving show:", err);
@@ -234,7 +235,7 @@ export default function ShowInfo() {
 
         await delay(5);
       }
-
+      toast.success("Added to watchlist!");
       setIsInDb(true);
     } catch (err) {
       console.error("Error marking episodes as seen:", err);
@@ -286,6 +287,7 @@ export default function ShowInfo() {
     } catch (err) {
       console.error("Error removing show:", err);
     } finally {
+      toast.success("Removed from watchlist!");
       setLoadingWatchlist(false);
     }
   }
@@ -313,6 +315,7 @@ export default function ShowInfo() {
             alt={show.name || "Show image"}
             className={styles.showImg}
           />
+        
           <div className={styles["show-data"]}>
             <h2>{show.name}</h2>
             <p>

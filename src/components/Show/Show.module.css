@@ -99,16 +99,16 @@
   width: 280px;
   background: none;
   border: 2px solid white;
+  color: white;
   border-radius: 4px;
   font-size: 2rem;
-  color: inherit;
   font-weight: 500;
   cursor: pointer;
 }
 
 .watchlistBtn:hover {
-  background-color: white;
-  color: black;
+   background: white;
+   color: black;
 }
 
 .seenBtn {

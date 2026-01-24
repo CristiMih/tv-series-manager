@@ -5,8 +5,17 @@ import TWDCard from "../../assets/example-cards/walking-dead-card.png";
 import findShow from "../../assets/find-your-show.png";
 import highFive from "../../assets/high-five-mascots.png";
 import keepTrack from "../../assets/keep-track.png";
+import { useNavigate } from "react-router";
 
 export default function ContentSection() {
+  const navigate = useNavigate();
+  function handleLoginClick() {
+   navigate("/login")
+  }
+
+  function handleRegisterClick() {
+   navigate("/register")
+  }
   return (
     <>
       <main className={styles.main}>
@@ -28,8 +37,8 @@ export default function ContentSection() {
           <h2>Ready to track your Binge?</h2>
           <p>Join BingeBuddy today and never lose track of your shows again!</p>
           <div className={styles.btnsDiv}>
-            <button>Login</button>
-            <button>Register</button>
+            <button onClick={handleLoginClick}>Login</button>
+            <button onClick={handleRegisterClick}>Register</button>
           </div>
         </div>
       </div>

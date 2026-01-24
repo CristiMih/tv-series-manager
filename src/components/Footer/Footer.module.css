@@ -26,4 +26,9 @@ footer div {
 
 footer img {
     height: 30px;
+    filter: brightness(0) saturate(100%) invert(87%) sepia(8%) saturate(339%) hue-rotate(14deg) brightness(104%) contrast(97%);
+}
+
+a {
+    text-decoration: none;
 }

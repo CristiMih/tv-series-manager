@@ -77,7 +77,7 @@ export default function Login() {
 
     if (errors) {
       setErrors(errors);
-      console.log(errors);
+      toast.error(errors);
       return;
     }
 

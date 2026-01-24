@@ -4,9 +4,14 @@
   font-weight: 400;
   font-style: normal;
 }
-
+.title{
+  font-family: "Patrick Hand";
+  font-size: 4rem;
+  text-align: center;
+}
 .showsDiv {
   display: flex;
+  min-height: 650px;
   flex-wrap: wrap;
   gap: 5rem; 
   padding: 5rem;
@@ -119,6 +124,28 @@
     right: 5px;
 }
 
+.section {
+  background-color: #2A302F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding-top: 20px;
+}
+
+.section h2 {
+  font-family: "Patrick Hand";
+  font-size: 7rem;
+  color: #D9AF28;
+}
+
+.section span {
+  font-family: "Patrick Hand";
+  font-size: 7rem;
+  margin-left: 1rem;
+  color: white;
+}
+
 .loadingContainer {
   position: absolute;
   inset: 0;
@@ -146,4 +173,5 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 

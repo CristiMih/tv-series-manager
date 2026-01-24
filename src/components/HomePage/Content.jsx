@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../features/Auth/AuthContext";
 import styles from "./ContentSection.module.css";
 import { useNavigate } from "react-router";
+import Homepage from "./Homepage";
 
 export default function ContentSection() {
   const [shows, setShows] = useState([]);
+  const [totalWatchtime, setTotalWatchtime] = useState("00D:00H:00MIN");
   const [loadingAnimation, setLoadingAnimation] = useState(false);
 
   const { user, accessToken } = useAuthContext();
@@ -76,6 +78,28 @@ export default function ContentSection() {
     navigate(`/track/${show.showId}`);
   }
 
+  useEffect(() => {
+    if (shows.length === 0) {
+      setTotalWatchtime("00D:00H:00MIN");
+      return;
+    }
+    const totalRuntime = shows.reduce(
+      (sum, show) => sum + (show.runtime || 0),
+      0,
+    );
+    const days = Math.floor(totalRuntime / (60 * 24));
+    const hours = Math.floor((totalRuntime % (60 * 24)) / 60);
+    const minutes = totalRuntime % 60;
+    const formatted =
+      `${String(days).padStart(2, "0")}D:` +
+      `${String(hours).padStart(2, "0")}H:` +
+      `${String(minutes).padStart(2, "0")}MIN`;
+    setTotalWatchtime(formatted);
+  }, [shows]);
+
+  if (!loadingAnimation && shows.length === 0) {
+    return <Homepage />;
+  }
   return (
     <>
       {loadingAnimation && (
@@ -84,6 +108,7 @@ export default function ContentSection() {
           <span>Loading...</span>
         </div>
       )}
+      <h1 className={styles.title}>YOUR WATCHLIST:</h1>
       <div className={styles.showsDiv}>
         {shows.map((show) => (
           <div key={show.id} className={styles.card}>
@@ -140,6 +165,11 @@ export default function ContentSection() {
             </div>
           </div>
         ))}
+      </div>
+      <div className={styles.section}>
+        <h2>
+          YOUR TOTAL WATCHTIME IS: <span>{totalWatchtime}</span>
+        </h2>
       </div>
     </>
   );

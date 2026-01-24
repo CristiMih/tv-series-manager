@@ -122,6 +122,7 @@ export default function Register() {
           value={formValues.email}
           onChange={handleInputChange}
         />
+        {errors?.email && <p className={`${styles.error} ${styles["full-width"]}`}>{errors.email}</p>}
 
         <label htmlFor="password">Password</label>
         <input
@@ -131,6 +132,7 @@ export default function Register() {
           value={formValues.password}
           onChange={handleInputChange}
         />
+        {errors?.password && <p className={`${styles.error} ${styles["full-width"]}`}>{errors.password}</p>}
 
         <label htmlFor="retypePassword">Retype Password</label>
         <input
@@ -140,6 +142,9 @@ export default function Register() {
           value={formValues.retypePassword}
           onChange={handleInputChange}
         />
+        {errors?.retypePassword && (
+          <p className={`${styles.error} ${styles["full-width"]}`}>{errors.retypePassword}</p>
+        )}
 
         <label htmlFor="firstName">First Name</label>
         <input
@@ -149,6 +154,9 @@ export default function Register() {
           value={formValues.firstName}
           onChange={handleInputChange}
         />
+        {errors?.firstName && (
+          <p className={`${styles.error} ${styles["full-width"]}`}>{errors.firstName}</p>
+        )}
 
         <label htmlFor="lastName">Last Name</label>
         <input
@@ -158,6 +166,7 @@ export default function Register() {
           value={formValues.lastName}
           onChange={handleInputChange}
         />
+        {errors?.lastName && <p className={`${styles.error} ${styles["full-width"]}`}>{errors.lastName}</p>}
 
         <button
           type="submit"
@@ -171,7 +180,6 @@ export default function Register() {
         <img src={remoteImg} alt="" />
         <img src={fullstarImg} alt="" />
         <img src={bPopcornImg} alt="" />
-        
       </form>
     </div>
   );

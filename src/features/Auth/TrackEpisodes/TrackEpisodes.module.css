@@ -119,8 +119,9 @@
 
   
 }
-.btnDiv .btnWatched { 
-  background-color: #22c55e; 
+.btnDiv .btnWatched .btnWatched{ 
+  background-color: #4CAF50; 
+  color: white;
 }
 
 .seasonDiv {
@@ -174,6 +175,7 @@
 
   }
 
+
 }
 
 /* Galben închis de bază (100% înălțime, 0% lățime vizual) */
@@ -204,7 +206,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #22c55e; /* verde */
+  background-color: #4CAF50; /* verde */
   border-radius: 2px;
   box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
   transition: all 0.3s ease;
@@ -219,8 +221,9 @@
 }
 
 
-.btnWatched {
-  background-color: #22c55e !important;
+ .btnWatched {
+  background-color: #4CAF50 !important;
+  color: white !important;
 }
 
 
