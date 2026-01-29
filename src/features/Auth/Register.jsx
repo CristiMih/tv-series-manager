@@ -174,12 +174,12 @@ export default function Register() {
         >
           Register
         </button>
-        <img src={calendarImg} alt="" />
-        <img src={loadingImg} alt="" />
-        <img src={starImg} alt="" />
-        <img src={remoteImg} alt="" />
-        <img src={fullstarImg} alt="" />
-        <img src={bPopcornImg} alt="" />
+        <img src={calendarImg} alt="calendarIcon" />
+        <img src={loadingImg} alt="loadingIcon" />
+        <img src={starImg} alt="starIcon" />
+        <img src={remoteImg} alt="remoteIcon" />
+        <img src={fullstarImg} alt="fullstarIcon" />
+        <img src={bPopcornImg} alt="popconrimg" />
       </form>
     </div>
   );

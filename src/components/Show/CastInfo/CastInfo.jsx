@@ -80,7 +80,10 @@ export default function CastInfo() {
         <div className={style["carousel-div"]} ref={carouselRef}>
           {castInfo.map((c) => (
             <div key={c.character.id} className={style["episode-info"]}>
-              <img src={c.person.image?.medium || noImg} />
+              <img
+                src={c.person.image?.medium || noImg}
+                alt={c.person.name || "Actor image"}
+              />
               <p>{c.person.name}</p>
               <h6>{c.character.name.toUpperCase()}</h6>
             </div>

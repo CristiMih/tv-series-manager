@@ -12,7 +12,7 @@ export default function EpisodesCarousel({ seasonId, setLoading }) {
     async function loadData() {
       try {
         const episodesRes = await fetch(
-          `https://api.tvmaze.com/seasons/${seasonId}/episodes`
+          `https://api.tvmaze.com/seasons/${seasonId}/episodes`,
         );
         const episodesData = await episodesRes.json();
         const regularEpisodes = episodesData
@@ -90,7 +90,11 @@ export default function EpisodesCarousel({ seasonId, setLoading }) {
       <div className={style["carousel-div"]} ref={carouselRef}>
         {episodes.map((s) => (
           <div key={s.id} className={style["episode-info"]}>
-            <img src={s.image?.medium || noImg} />
+            <img
+              src={s.image?.medium || noImg}
+              alt={s.name || "Episode image"}
+            />
+
             <div className={style["episode-overlay"]}>
               <p>
                 S{String(s.season).padStart(2, "0")} | E

@@ -132,9 +132,9 @@ export default function Login() {
         >
           Login
         </button>
-        <img src={tvImg} alt="" />
-        <img src={popcronImg} alt="" />
-        <img src={tvSalute} alt="" />
+        <img src={tvImg} alt="tvIcon" />
+        <img src={popcronImg} alt="popcornIcon" />
+        <img src={tvSalute} alt="tcSaluteIcon" />
       </form>
     </div>
   );

@@ -6,7 +6,7 @@ export default function Nav() {
     <footer>
      <a href="https://github.com/CristiMih" target="_blank" >
          <div>
-             <img src={githubLogo} alt="" />
+             <img src={githubLogo} alt="githubLogo" />
             <span>@CristiMih</span>
          </div>
     </a>

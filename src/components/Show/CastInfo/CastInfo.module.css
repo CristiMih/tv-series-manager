@@ -58,6 +58,10 @@
   margin-left: 75px;
 }
 
+.episode-info {
+  max-width: 110px;
+}
+
 .episode-info p {
   font-size: 15px;
   margin: 5px 0;

@@ -11,7 +11,7 @@ export default function Nav() {
   return (
     <nav className={styles.nav}>
       <Link to="/">
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />
       </Link>
 
       <div className={styles.searchWrapper}>

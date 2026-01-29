@@ -20,19 +20,19 @@ export default function ContentSection() {
     <>
       <main className={styles.main}>
         <div className={styles.findShowDiv}>
-          <img src={findShow} className={styles.findShow} />
+          <img src={findShow} className={styles.findShow} alt="find-show-arrow" />
         </div>
         <div className={styles["cards-container"]}>
-          <img src={BBCard} alt="" />
-          <img src={GoTCard} alt="" />
-          <img src={TWDCard} alt="" />
+          <img src={BBCard} alt="Breaking Bad Card" />
+          <img src={GoTCard} alt="Game of thrones Card" />
+          <img src={TWDCard} alt="TWD Card" />
         </div>
         <div className={styles["keepTrack-container"]}>
-          <img src={keepTrack} alt="" />
+          <img src={keepTrack} alt="keepTrac-Title" />
         </div>
       </main>
       <div className={styles.section}>
-        <img src={highFive} alt="" />
+        <img src={highFive} alt="High Five Mascots" />
         <div className={styles.joinDiv}>
           <h2>Ready to track your Binge?</h2>
           <p>Join BingeBuddy today and never lose track of your shows again!</p>
