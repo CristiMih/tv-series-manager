@@ -24,10 +24,10 @@
       "premiered": "2011-04-17",
       "ended": "2019-05-19",
       "episodesReleased": 73,
-      "episodesWatched": 0,
+      "episodesWatched": 22,
       "rating": 8.9,
       "summary": "<p>Based on the bestselling book series <i>A Song of Ice and Fire</i> by George R.R. Martin, this sprawling new HBO dram",
-      "runtime": 0,
+      "runtime": 1320,
       "id": 1
     },
     {
@@ -38,11 +38,25 @@
       "premiered": "2026-01-18",
       "ended": null,
       "episodesReleased": 2,
-      "episodesWatched": 2,
+      "episodesWatched": 1,
       "rating": 8.3,
       "summary": "<p>A century before the events of <i>Game of Thrones</i>, two unlikely heroes wandered Westeros: a young, naive but cour",
-      "runtime": 78,
+      "runtime": 42,
       "id": 2
+    },
+    {
+      "userId": 1,
+      "showId": 169,
+      "name": "Breaking Bad",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/501/1253519.jpg",
+      "premiered": "2008-01-20",
+      "ended": "2019-10-11",
+      "episodesReleased": 62,
+      "episodesWatched": 62,
+      "rating": 9.2,
+      "summary": "<p><b>Breaking Bad</b> follows protagonist Walter White, a chemistry teacher who lives in New Mexico with his wife and t",
+      "runtime": 3720,
+      "id": 3
     }
   ],
   "watchedEpisodes": [
@@ -55,10 +69,591 @@
     },
     {
       "userId": 1,
-      "showId": "53063",
-      "episodeId": 3391838,
-      "runtime": 36,
+      "showId": "82",
+      "episodeId": 4952,
+      "runtime": 60,
       "id": 2
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4953,
+      "runtime": 60,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4954,
+      "runtime": 60,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4955,
+      "runtime": 60,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4956,
+      "runtime": 60,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4957,
+      "runtime": 60,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4958,
+      "runtime": 60,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4959,
+      "runtime": 60,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4960,
+      "runtime": 60,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4961,
+      "runtime": 60,
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4962,
+      "runtime": 60,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4963,
+      "runtime": 60,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4964,
+      "runtime": 60,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4965,
+      "runtime": 60,
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4966,
+      "runtime": 60,
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4967,
+      "runtime": 60,
+      "id": 17
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4968,
+      "runtime": 60,
+      "id": 18
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4969,
+      "runtime": 60,
+      "id": 19
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4971,
+      "runtime": 60,
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4970,
+      "runtime": 60,
+      "id": 21
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12192,
+      "runtime": 60,
+      "id": 62
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12193,
+      "runtime": 60,
+      "id": 63
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12194,
+      "runtime": 60,
+      "id": 64
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12195,
+      "runtime": 60,
+      "id": 65
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12196,
+      "runtime": 60,
+      "id": 66
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12197,
+      "runtime": 60,
+      "id": 67
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12198,
+      "runtime": 60,
+      "id": 68
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12199,
+      "runtime": 60,
+      "id": 69
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12200,
+      "runtime": 60,
+      "id": 70
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12201,
+      "runtime": 60,
+      "id": 71
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12202,
+      "runtime": 60,
+      "id": 72
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12203,
+      "runtime": 60,
+      "id": 73
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12204,
+      "runtime": 60,
+      "id": 74
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12205,
+      "runtime": 60,
+      "id": 75
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12206,
+      "runtime": 60,
+      "id": 76
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12207,
+      "runtime": 60,
+      "id": 77
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12208,
+      "runtime": 60,
+      "id": 78
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12209,
+      "runtime": 60,
+      "id": 79
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12210,
+      "runtime": 60,
+      "id": 80
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12211,
+      "runtime": 60,
+      "id": 81
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12212,
+      "runtime": 60,
+      "id": 82
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12213,
+      "runtime": 60,
+      "id": 83
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12214,
+      "runtime": 60,
+      "id": 84
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12215,
+      "runtime": 60,
+      "id": 85
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12216,
+      "runtime": 60,
+      "id": 86
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12217,
+      "runtime": 60,
+      "id": 87
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12218,
+      "runtime": 60,
+      "id": 88
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12219,
+      "runtime": 60,
+      "id": 89
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12220,
+      "runtime": 60,
+      "id": 90
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12221,
+      "runtime": 60,
+      "id": 91
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12222,
+      "runtime": 60,
+      "id": 92
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12223,
+      "runtime": 60,
+      "id": 93
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12224,
+      "runtime": 60,
+      "id": 94
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12225,
+      "runtime": 60,
+      "id": 95
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12226,
+      "runtime": 60,
+      "id": 96
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12227,
+      "runtime": 60,
+      "id": 97
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12228,
+      "runtime": 60,
+      "id": 98
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12229,
+      "runtime": 60,
+      "id": 99
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12230,
+      "runtime": 60,
+      "id": 100
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12231,
+      "runtime": 60,
+      "id": 101
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12232,
+      "runtime": 60,
+      "id": 102
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12233,
+      "runtime": 60,
+      "id": 103
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12234,
+      "runtime": 60,
+      "id": 104
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12235,
+      "runtime": 60,
+      "id": 105
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12236,
+      "runtime": 60,
+      "id": 106
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12237,
+      "runtime": 60,
+      "id": 107
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12238,
+      "runtime": 60,
+      "id": 108
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12239,
+      "runtime": 60,
+      "id": 109
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12240,
+      "runtime": 60,
+      "id": 110
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12241,
+      "runtime": 60,
+      "id": 111
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12242,
+      "runtime": 60,
+      "id": 112
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12243,
+      "runtime": 60,
+      "id": 113
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12244,
+      "runtime": 60,
+      "id": 114
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12245,
+      "runtime": 60,
+      "id": 115
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12246,
+      "runtime": 60,
+      "id": 116
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12247,
+      "runtime": 60,
+      "id": 117
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12248,
+      "runtime": 60,
+      "id": 118
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12249,
+      "runtime": 60,
+      "id": 119
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12250,
+      "runtime": 60,
+      "id": 120
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12251,
+      "runtime": 60,
+      "id": 121
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12252,
+      "runtime": 60,
+      "id": 122
+    },
+    {
+      "userId": 1,
+      "showId": "169",
+      "episodeId": 12253,
+      "runtime": 60,
+      "id": 123
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4972,
+      "runtime": 60,
+      "id": 124
+    },
+    {
+      "userId": 1,
+      "showId": "82",
+      "episodeId": 4973,
+      "runtime": 60,
+      "id": 125
     }
   ]
 }
