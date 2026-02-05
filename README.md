@@ -2,6 +2,8 @@
 BingeBuddy is a TV series tracking app built with React and Vite that helps you discover new shows, track your progress, and manage your personal watchlist.
 Users can browse shows, see details, register and log in, and keep track of watched episodes in a clean, playful interface.
 
+<p align="center"> <img src="screenshots/screenshot.png" width="1000" /> <img src="screenshots/screenshot2.png" width="1000" /> </p>
+
 ## Setup Instructions Follow these steps to run the project locally: 
 ###  Clone the repository 
 # 1. Install dependencies
