@@ -1,16 +1,35 @@
-# React + Vite
+# BingeBuddy – TV Series Tracker
+BingeBuddy is a TV series tracking app built with React and Vite that helps you discover new shows, track your progress, and manage your personal watchlist.
+Users can browse shows, see details, register and log in, and keep track of watched episodes in a clean, playful interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup Instructions Follow these steps to run the project locally: 
+###  Clone the repository 
+# 1. Install dependencies
+npm install
+# 2. Start API server
+npm run server
+# 3. Start frontend
+npm run dev
 
-Currently, two official plugins are available:
+Main features:
+- Browse a curated list of TV shows with ratings, images and summaries
+- View detailed show pages with episodes and meta information
+- User authentication (register, login, protected routes)
+- Personal watchlist / tracking:
+  - Add shows to your list
+  - Track watched vs released episodes
+  - See progress for each show (percentage watched)
+- User profile page with your tracked shows
+- Toast notifications for feedback (success/error)
+- Responsive layout and custom illustration-style UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **React** (functional components, hooks)
+- **Vite** (bundler & dev server)
+- **React Router v7** for client‑side routing
+- **Zod** for form validation
+- **React Toastify** for notifications
+- **Custom CSS** for styling
+- **json-server / json-server-auth** for local development
+- **my-json-server** for the public mock API
 
-## React Compiler
-
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
